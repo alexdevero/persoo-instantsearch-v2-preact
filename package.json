@@ -17,16 +17,16 @@
     "build/*"
   ],
   "devDependencies": {
-    "eslint": "^6.0.1",
-    "eslint-config-synacor": "^3.0.4",
-    "eslint-plugin-react": "^7.18.3",
-    "if-env": "^1.0.0",
-    "preact-cli": "^3.0.0-rc.6"
+    "eslint": "6.8.0",
+    "eslint-config-synacor": "3.0.5",
+    "eslint-plugin-react": "7.18.3",
+    "if-env": "1.0.4",
+    "preact-cli": "3.0.0-rc.6"
   },
   "dependencies": {
-    "algoliasearch": "^4.0.3",
-    "instantsearch.js": "^4.2.0",
-    "preact": "^10.1.0",
-    "preact-render-to-string": "^5.1.2"
+    "algoliasearch": "4.0.3",
+    "instantsearch.js": "4.2.0",
+    "preact": "10.3.2",
+    "preact-render-to-string": "5.1.4"
   }
 }
