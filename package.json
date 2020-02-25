@@ -10,6 +10,11 @@
     "dev": "preact watch",
     "lint": "eslint src"
   },
+  "browserslist": [
+    "> 1%",
+    "IE >= 9",
+    "last 6 versions"
+  ],
   "eslintConfig": {
     "extends": "eslint-config-synacor"
   },
