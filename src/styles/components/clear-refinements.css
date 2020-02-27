@@ -6,7 +6,7 @@
 .ais-ClearRefinements-button {
   padding: .3rem .5rem;
   overflow: visible;
-  font: inherit;
+  /* font: inherit; */
   font-size: .8rem;
   line-height: normal;
   color: #fff;
@@ -38,6 +38,7 @@
 }
 
 .ais-ClearRefinements-button--disabled {
+  display: none;
   opacity: .6;
   cursor: not-allowed;
 }
