@@ -1,0 +1,21 @@
+/* Powered by */
+.ais-PoweredBy {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #3a4570;
+}
+
+.ais-PoweredBy-logo {
+  display: block;
+  margin-left: .3rem;
+  width: auto;
+  height: 1.2em;
+}
+
+.ais-PoweredBy-text {
+  font-size: .8rem;
+}
