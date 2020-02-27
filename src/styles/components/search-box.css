@@ -1,4 +1,8 @@
 /* Search box */
+.ais-SearchBox {
+  color: #3a4570;
+}
+
 .ais-SearchBox-submit,
 .ais-SearchBox-reset {
   overflow: visible;
@@ -29,10 +33,6 @@
 .ais-SearchBox-form {
   position: relative;
   display: block;
-}
-
-.ais-SearchBox {
-  color: #3a4570;
 }
 
 .ais-SearchBox-input {
