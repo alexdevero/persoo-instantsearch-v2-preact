@@ -128,6 +128,8 @@ setTimeout(function() {
     menu({
       container: '#persoo-menu',
       attribute: 'categories',
+      limit: 5,
+      showMore: true,
       cssClasses: {
         root: 'persoo-menu',
         list: [
@@ -179,6 +181,8 @@ setTimeout(function() {
       // cssClassNamees: object,
       // transformItems: function,
       container: '#persoo-hierarchical-menu',
+      limit: 7,
+      showMore: true,
       attributes: [
         'hierarchicalCategories.lvl0',
         'hierarchicalCategories.lvl1',
@@ -207,7 +211,7 @@ setTimeout(function() {
       // transformItems: function,
       container: '#persoo-brand-list',
       attribute: 'brand',
-      limit: 15,
+      limit: 7,
       showMore: true,
       searchable: true
     }),
