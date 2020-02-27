@@ -1,14 +1,38 @@
 /* Geo search */
+.ais-GeoSearch {
+  position: relative;
+  color: #3a4570;
+}
+
+.ais-GeoSearch,
+.ais-GeoSearch-map {
+  height: 100%;
+}
+
 .ais-GeoSearch-redo,
 .ais-GeoSearch-reset {
-  padding: .3rem .5rem;
+  padding: 0;
+  overflow: visible;
   font-size: .8rem;
+  line-height: normal;
   color: #fff;
   background-color: #0096db;
+  border: 0;
   border-radius: 5px;
+  cursor: pointer;
   outline: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   -webkit-transition: background-color .2s ease-out;
           transition: background-color .2s ease-out;
+}
+
+.ais-GeoSearch-redo::-moz-focus-inner,
+.ais-GeoSearch-reset::-moz-focus-inner {
+  padding: 0;
+  border: 0;
 }
 
 .ais-GeoSearch-redo:hover,
@@ -24,6 +48,11 @@
   cursor: not-allowed;
 }
 
+.ais-GeoSearch-redo[disabled],
+.ais-GeoSearch-reset[disabled] {
+  cursor: default;
+}
+
 .ais-GeoSearch-redo--disabled:hover,
 .ais-GeoSearch-redo--disabled:focus,
 .ais-GeoSearch-reset--disabled:hover,
@@ -31,50 +60,10 @@
   background-color: #0096db;
 }
 
+.ais-GeoSearch-label,
 .ais-GeoSearch-redo,
 .ais-GeoSearch-reset {
-  overflow: visible;
-  padding: 0;
-  font: inherit;
-  color: inherit;
-  line-height: normal;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.ais-GeoSearch-redo::-moz-focus-inner,
-.ais-GeoSearch-reset::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-
-.ais-GeoSearch-redo[disabled],
-.ais-GeoSearch-reset[disabled] {
-  cursor: default;
-}
-
-.ais-GeoSearch {
-  color: #3a4570;
-}
-
-.ais-GeoSearch,
-.ais-GeoSearch-map {
-  height: 100%;
-}
-
-.ais-GeoSearch {
-  position: relative;
-}
-
-.ais-GeoSearch-control {
-  position: absolute;
-  top: .8rem;
-  left: 3.75rem;
+  white-space: nowrap;
 }
 
 .ais-GeoSearch-label {
@@ -94,10 +83,10 @@
   margin: 0 .25rem 0 0;
 }
 
-.ais-GeoSearch-label,
-.ais-GeoSearch-redo,
-.ais-GeoSearch-reset {
-  white-space: nowrap;
+.ais-GeoSearch-control {
+  position: absolute;
+  top: .8rem;
+  left: 3.75rem;
 }
 
 .ais-GeoSearch-reset {
