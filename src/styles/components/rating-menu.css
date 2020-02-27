@@ -1,0 +1,79 @@
+/* Rating menu */
+.ais-RatingMenu-list {
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+.ais-RatingMenu-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.ais-RatingMenu-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.ais-RatingMenu {
+  color: #3a4570;
+}
+
+.ais-RatingMenu-link {
+  color: #0096db;
+  -webkit-transition: color .2s ease-out;
+          transition: color .2s ease-out;
+}
+
+.ais-RatingMenu-link:hover,
+.ais-RatingMenu-link:focus {
+  color: #0073a8;
+}
+
+.ais-RatingMenu-count {
+  font-size: .8rem;
+  color: #3a4570;
+}
+
+.ais-RatingMenu-count::before {
+  content: '(';
+}
+
+.ais-RatingMenu-count::after {
+  content: ')';
+}
+
+.ais-RatingMenu-item--disabled .ais-RatingMenu-count,
+.ais-RatingMenu-item--disabled,
+.ais-RatingMenu-label {
+  color: #c4c8d8;
+}
+
+.ais-RatingMenu-item--selected {
+  font-weight: bold;
+}
+
+.ais-RatingMenu-link {
+  line-height: 1.5;
+}
+
+.ais-RatingMenu-link > * + * {
+  margin-left: .3rem;
+}
+
+.ais-RatingMenu-starIcon {
+  position: relative;
+  top: -1px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  fill: #ffc168;
+}
+
+.ais-RatingMenu-item--disabled .ais-RatingMenu-starIcon {
+  fill: #c4c8d8;
+}
