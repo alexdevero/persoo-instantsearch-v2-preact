@@ -20,9 +20,39 @@ import {
   toggleRefinement
 } from 'instantsearch.js/es/widgets'
 
+// Import Algolia styles
 import './styles/algolia-reset.css'
-import './styles/algolia-theme.css'
 // import './styles/algolia-satelite.css'
+
+// Import components
+import './styles/components/base-general-styles.css'
+import './styles/components/breadcrumbs.css'
+import './styles/components/clear-refinements.css'
+import './styles/components/current-refinements.css'
+import './styles/components/geo-search.css'
+import './styles/components/hierarchical-menu.css'
+import './styles/components/hits-per-page.css'
+import './styles/components/hits.css'
+import './styles/components/infinite-hits.css'
+import './styles/components/menu.css'
+import './styles/components/numeric-menu.css'
+import './styles/components/pagination.css'
+import './styles/components/panel.css'
+import './styles/components/powered-by.css'
+import './styles/components/range-slider.css'
+import './styles/components/rating-menu.css'
+import './styles/components/refinement-list.css'
+import './styles/components/results-per-page.css'
+import './styles/components/results.css'
+import './styles/components/rheostat.css'
+import './styles/components/search-box.css'
+import './styles/components/snippet.css'
+import './styles/components/sort-by.css'
+import './styles/components/stats.css'
+import './styles/components/toggle-refinement.css'
+import './styles/components/voice-search.css'
+
+// Import main stylesheet
 import './styles/style.css'
 
 const searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76')
