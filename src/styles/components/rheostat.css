@@ -1,0 +1,47 @@
+/* Rheostat */
+.rheostat-tooltip,
+.rheostat-value {
+  font-size: .8rem;
+}
+
+.rheostat-handle {
+  position: relative;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #333;
+  border-radius: 50%;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.rheostat-marker {
+  position: absolute;
+  margin-left: -1px;
+  width: 1px;
+  height: 5px;
+  background-color: #aaa;
+}
+
+.rheostat-marker--large {
+  height: 9px;
+}
+
+.rheostat-value {
+  position: absolute;
+  padding-top: 15px;
+  margin-left: 50%;
+  text-align: center;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.rheostat-tooltip {
+  position: absolute;
+  top: -22px;
+  margin-left: 50%;
+  text-align: center;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
