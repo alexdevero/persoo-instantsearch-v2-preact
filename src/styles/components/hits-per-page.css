@@ -1,4 +1,8 @@
 /* Hits per page */
+.ais-HitsPerPage {
+  color: #3a4570;
+}
+
 .ais-HitsPerPage-select {
   -webkit-appearance: none;
   padding: .3rem 2rem .3rem .3rem;
@@ -12,8 +16,4 @@
   border-radius: 5px;
      -moz-appearance: none;
           appearance: none;
-}
-
-.ais-HitsPerPage {
-  color: #3a4570;
 }
