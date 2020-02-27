@@ -1,12 +1,13 @@
 /* Rating menu */
-.ais-RatingMenu-list {
-  font-weight: normal;
-  line-height: 1.5;
+.ais-RatingMenu {
+  color: #3a4570;
 }
 
 .ais-RatingMenu-list {
   padding: 0;
   margin: 0;
+  font-weight: 400;
+  line-height: 1.5;
   list-style: none;
 }
 
@@ -17,13 +18,7 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.ais-RatingMenu {
-  color: #3a4570;
-}
-
-.ais-RatingMenu-link {
+  line-height: 1.5;
   color: #0096db;
   -webkit-transition: color .2s ease-out;
           transition: color .2s ease-out;
@@ -54,15 +49,7 @@
 }
 
 .ais-RatingMenu-item--selected {
-  font-weight: bold;
-}
-
-.ais-RatingMenu-link {
-  line-height: 1.5;
-}
-
-.ais-RatingMenu-link > * + * {
-  margin-left: .3rem;
+  font-weight: 700;
 }
 
 .ais-RatingMenu-starIcon {
@@ -76,4 +63,8 @@
 
 .ais-RatingMenu-item--disabled .ais-RatingMenu-starIcon {
   fill: #c4c8d8;
+}
+
+.ais-RatingMenu-link > * + * {
+  margin-left: .3rem;
 }
