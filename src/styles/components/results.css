@@ -1,0 +1,38 @@
+/* Results */
+.ais-Results-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.ais-Results {
+  color: #3a4570;
+}
+
+.ais-Results-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: -1rem;
+  margin-left: -1rem;
+}
+
+.ais-Panel-body .ais-Results-list {
+  margin: .5rem 0 0 -1rem;
+}
+
+.ais-Results-item {
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  width: calc(25% - 1rem);
+  border: 1px solid #c4c8d8;
+  -webkit-box-shadow: 0 2px 5px 0 #e3e5ec;
+          box-shadow: 0 2px 5px 0 #e3e5ec;
+}
+
+.ais-Panel-body .ais-Results-item {
+  margin: .5rem 0 .5rem 1rem;
+}
