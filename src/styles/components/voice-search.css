@@ -1,0 +1,54 @@
+/* Voice search */
+.ais-VoiceSearch-button {
+  padding: 4px;
+  width: 24px;
+  height: 24px;
+  color: #3a4570;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+}
+
+.ais-VoiceSearch-button {
+  overflow: visible;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  line-height: normal;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.ais-VoiceSearch-button svg {
+  color: currentColor;
+}
+
+.ais-VoiceSearch-button:hover {
+  color: #fff;
+  background-color: #a5aed1;
+  cursor: pointer;
+}
+
+.ais-VoiceSearch-button:disabled {
+  color: #a5aed1;
+}
+
+.ais-VoiceSearch-button:disabled:hover {
+  color: #a5aed1;
+  background: inherit;
+  cursor: not-allowed;
+}
+
+.ais-VoiceSearch-button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+.ais-VoiceSearch-button[disabled] {
+  cursor: default;
+}
