@@ -1,0 +1,36 @@
+/* Panel */
+.ais-Panel {
+  color: #3a4570;
+}
+
+.ais-Panel--collapsible {
+  position: relative;
+}
+
+.ais-Panel--collapsible.ais-Panel--collapsed .ais-Panel-body,
+.ais-Panel--collapsible.ais-Panel--collapsed .ais-Panel-footer {
+  display: none;
+}
+
+.ais-Panel--collapsible .ais-Panel-collapseButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.ais-Panel-header {
+  padding-bottom: .5rem;
+  margin-bottom: .5rem;
+  font-size: .8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 1px solid #c4c8d8;
+}
+
+.ais-Panel-footer {
+  margin-top: .5rem;
+  font-size: .8rem;
+}
