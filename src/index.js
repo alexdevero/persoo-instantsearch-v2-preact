@@ -10,13 +10,16 @@ import {
   hits,
   hitsPerPage,
   menu,
+  menuSelect,
   numericMenu,
   pagination,
+  rangeInput,
   rangeSlider,
   ratingMenu,
   refinementList,
   searchBox,
   sortBy,
+  stats,
   toggleRefinement
 } from 'instantsearch.js/es/widgets'
 
@@ -135,6 +138,20 @@ setTimeout(function() {
         list: [
           'persoo-menu-list',
           'persoo-menu-list--sub-class'
+        ]
+      }
+    }),
+
+    menuSelect({
+      container: '#persoo-menu-select',
+      attribute: 'categories',
+      limit: 5,
+      showMore: true,
+      cssClasses: {
+        root: 'persoo-menu-select',
+        list: [
+          'persoo-menu-select-list',
+          'persoo-menu-select-list--sub-class'
         ]
       }
     }),
@@ -279,12 +296,25 @@ setTimeout(function() {
       }
     }),
 
+    rangeInput({
+      container: '#persoo-range-input',
+      attribute: 'price'
+    }),
+
     clearRefinements({
       container: '#persoo-clear-refinements',
       cssClasses: {
         root: 'persoo-clear-refinements-root',
         button: 'persoo-clear-refinements-button',
         disabledButton: 'persoo-clear-refinements-disabled-button'
+      }
+    }),
+
+    stats({
+      container: '#persoo-stats',
+      cssClasses: {
+        root: 'persoo-stats-root',
+        text: ['persoo-stats-text', 'persoo-stats-text--subclass']
       }
     })
   ])
@@ -310,6 +340,8 @@ export default class App extends Component {
 
             <div id="persoo-menu" />
 
+            <div id="persoo-menu-select" />
+
             <div id="persoo-toggle-refinement" />
 
             <div id="persoo-numeric-menu" />
@@ -317,6 +349,8 @@ export default class App extends Component {
             <div id="persoo-price" />
 
             <div id="persoo-rating-menu" />
+
+            <div id="persoo-range-input" />
           </div>
         </div>
 
@@ -332,6 +366,8 @@ export default class App extends Component {
               <div id="persoo-hits-per-page" />
 
               <div id="persoo-sort-by" />
+
+              <div id="persoo-stats" />
             </div>
 
             <div id="persoo-hits" />
