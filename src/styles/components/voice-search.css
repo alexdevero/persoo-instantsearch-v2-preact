@@ -1,31 +1,28 @@
 /* Voice search */
 .ais-VoiceSearch-button {
   padding: 4px;
+  /* padding: 0; */
   width: 24px;
   height: 24px;
-  color: #3a4570;
-  background-color: transparent;
-  border: none;
-  border-radius: 50%;
-}
-
-.ais-VoiceSearch-button {
-  overflow: visible;
-  padding: 0;
-  font: inherit;
-  color: inherit;
+  /* font: inherit; */
   line-height: normal;
-  background: none;
+  color: #3a4570;
+  /* color: inherit; */
+  /* background: none; */
+  background-color: transparent;
   border: 0;
+  border-radius: 50%;
   cursor: pointer;
+  overflow: visible;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
 }
 
-.ais-VoiceSearch-button svg {
-  color: currentColor;
+.ais-VoiceSearch-button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
 }
 
 .ais-VoiceSearch-button:hover {
@@ -44,11 +41,10 @@
   cursor: not-allowed;
 }
 
-.ais-VoiceSearch-button::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-
 .ais-VoiceSearch-button[disabled] {
   cursor: default;
+}
+
+.ais-VoiceSearch-button svg {
+  color: currentColor;
 }
