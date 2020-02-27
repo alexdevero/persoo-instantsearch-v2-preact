@@ -1,8 +1,6 @@
 /* Breadcrumbs */
-.ais-Breadcrumb-list {
-  padding: 0;
-  margin: 0;
-  list-style: none;
+.ais-Breadcrumb {
+  color: #3a4570;
 }
 
 .ais-Breadcrumb-list,
@@ -15,12 +13,14 @@
   align-items: center;
 }
 
-.ais-Breadcrumb {
-  color: #3a4570;
+.ais-Breadcrumb-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .ais-Breadcrumb-item--selected {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .ais-Breadcrumb-separator {
