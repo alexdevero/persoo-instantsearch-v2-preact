@@ -7,11 +7,6 @@
   position: relative;
 }
 
-.ais-Panel--collapsible.ais-Panel--collapsed .ais-Panel-body,
-.ais-Panel--collapsible.ais-Panel--collapsed .ais-Panel-footer {
-  display: none;
-}
-
 .ais-Panel--collapsible .ais-Panel-collapseButton {
   position: absolute;
   top: 0;
@@ -33,4 +28,9 @@
 .ais-Panel-footer {
   margin-top: .5rem;
   font-size: .8rem;
+}
+
+.ais-Panel--collapsible.ais-Panel--collapsed .ais-Panel-body,
+.ais-Panel--collapsible.ais-Panel--collapsed .ais-Panel-footer {
+  display: none;
 }
