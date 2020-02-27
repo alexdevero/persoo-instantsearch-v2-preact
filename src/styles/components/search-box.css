@@ -1,0 +1,132 @@
+/* Search box */
+.ais-SearchBox-submit,
+.ais-SearchBox-reset {
+  overflow: visible;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  line-height: normal;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.ais-SearchBox-submit::-moz-focus-inner,
+.ais-SearchBox-reset::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+.ais-SearchBox-submit[disabled],
+.ais-SearchBox-reset[disabled] {
+  cursor: default;
+}
+
+.ais-SearchBox-form {
+  position: relative;
+  display: block;
+}
+
+.ais-SearchBox {
+  color: #3a4570;
+}
+
+.ais-SearchBox-input {
+  position: relative;
+  -webkit-appearance: none;
+  padding: .3rem 1.7rem;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #c4c8d8;
+  border-radius: 5px;
+  -moz-appearance: none;
+      appearance: none;
+}
+
+.ais-SearchBox-input::-ms-clear,
+.ais-SearchBox-input::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.ais-SearchBox-input::-webkit-search-decoration,
+.ais-SearchBox-input::-webkit-search-cancel-button,
+.ais-SearchBox-input::-webkit-search-results-button,
+.ais-SearchBox-input::-webkit-search-results-decoration {
+  display: none;
+}
+
+.ais-SearchBox-input::-webkit-input-placeholder {
+  color: #a5aed1;
+}
+
+.ais-SearchBox-input::-moz-placeholder {
+  color: #a5aed1;
+}
+
+.ais-SearchBox-input:-ms-input-placeholder {
+  color: #a5aed1;
+}
+
+.ais-SearchBox-input:-moz-placeholder {
+  color: #a5aed1;
+}
+
+.ais-SearchBox-submit,
+.ais-SearchBox-reset,
+.ais-SearchBox-loadingIndicator {
+  position: absolute;
+  top: 50%;
+  right: .3rem;
+  z-index: 1;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -moz-appearance: none;
+      appearance: none;
+}
+
+.ais-SearchBox-submit {
+  left: .3rem;
+}
+
+.ais-SearchBox-reset {
+  right: .3rem;
+}
+
+.ais-SearchBox-submitIcon,
+.ais-SearchBox-resetIcon,
+.ais-SearchBox-loadingIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+
+.ais-SearchBox-submitIcon path,
+.ais-SearchBox-resetIcon path {
+  fill: #495588;
+}
+
+.ais-SearchBox-submitIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.ais-SearchBox-resetIcon {
+  width: 12px;
+  height: 12px;
+}
+
+.ais-SearchBox-loadingIcon {
+  width: 16px;
+  height: 16px;
+}
