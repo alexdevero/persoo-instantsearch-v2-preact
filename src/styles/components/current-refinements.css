@@ -1,20 +1,39 @@
 /* Current refinements */
 .ais-CurrentRefinements {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: -.3rem;
   color: #3a4570;
 }
 
 .ais-CurrentRefinements-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   padding: 0;
   margin: 0;
   list-style: none;
+}
+
+.ais-CurrentRefinements-label,
+.ais-CurrentRefinements-categoryLabel,
+.ais-CurrentRefinements-delete {
+  font-size: .8rem;
+  color: #fff;
+  white-space: nowrap;
 }
 
 .ais-CurrentRefinements-delete,
 .ais-CurrentRefinements-reset {
   overflow: visible;
   padding: 0;
-  font: inherit;
-  color: inherit;
+  /* font: inherit; */
+  /* color: inherit; */
   line-height: normal;
   background: none;
   border: 0;
@@ -23,6 +42,10 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+.ais-CurrentRefinements-delete {
+  margin-left: .3rem;
 }
 
 .ais-CurrentRefinements-delete::-moz-focus-inner,
@@ -38,6 +61,7 @@
 
 .ais-CurrentRefinements-reset {
   padding: .3rem .5rem;
+  margin-top: .3rem;
   font-size: .8rem;
   color: #fff;
   background-color: #0096db;
@@ -45,6 +69,7 @@
   outline: none;
   -webkit-transition: background-color .2s ease-out;
           transition: background-color .2s ease-out;
+  white-space: nowrap;
 }
 
 .ais-CurrentRefinements-reset:hover,
@@ -52,21 +77,8 @@
   background-color: #0073a8;
 }
 
-.ais-CurrentRefinements {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-top: -.3rem;
-}
-
-.ais-CurrentRefinements-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+.ais-CurrentRefinements-reset + .ais-CurrentRefinements-list {
+  margin-left: .3rem;
 }
 
 .ais-CurrentRefinements-item {
@@ -85,27 +97,6 @@
   display: -ms-flexbox;
   display: flex;
   margin-left: .3em;
-}
-
-.ais-CurrentRefinements-delete {
-  margin-left: .3rem;
-}
-
-.ais-CurrentRefinements-label,
-.ais-CurrentRefinements-categoryLabel,
-.ais-CurrentRefinements-delete {
-  font-size: .8rem;
-  color: #fff;
-  white-space: nowrap;
-}
-
-.ais-CurrentRefinements-reset {
-  margin-top: .3rem;
-  white-space: nowrap;
-}
-
-.ais-CurrentRefinements-reset + .ais-CurrentRefinements-list {
-  margin-left: .3rem;
 }
 
 .ais-CurrentRefinements-count {
