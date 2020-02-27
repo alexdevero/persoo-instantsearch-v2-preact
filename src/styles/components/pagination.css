@@ -1,0 +1,77 @@
+/* Pagination */
+.ais-Pagination {
+  color: #3a4570;
+}
+
+.ais-Pagination-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.ais-Pagination-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.ais-Pagination-link {
+  color: #0096db;
+  -webkit-transition: color .2s ease-out;
+          transition: color .2s ease-out;
+}
+
+.ais-Pagination-link:hover,
+.ais-Pagination-link:focus {
+  color: #0073a8;
+}
+
+.ais-Pagination-list {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.ais-Pagination-item + .ais-Pagination-item {
+  margin-left: .3rem;
+}
+
+.ais-Pagination-link {
+  display: block;
+  padding: .3rem .6rem;
+  border: 1px solid #c4c8d8;
+  border-radius: 5px;
+  -webkit-transition: background-color .2s ease-out;
+          transition: background-color .2s ease-out;
+}
+
+.ais-Pagination-link:hover,
+.ais-Pagination-link:focus {
+  background-color: #e3e5ec;
+}
+
+.ais-Pagination-item--disabled .ais-Pagination-link {
+  color: #a5abc4;
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.ais-Pagination-item--disabled .ais-Pagination-link:hover,
+.ais-Pagination-item--disabled .ais-Pagination-link:focus {
+  color: #a5abc4;
+  background-color: #fff;
+}
+
+.ais-Pagination-item--selected .ais-Pagination-link {
+  color: #fff;
+  background-color: #0096db;
+  border-color: #0096db;
+}
+
+.ais-Pagination-item--selected .ais-Pagination-link:hover,
+.ais-Pagination-item--selected .ais-Pagination-link:focus {
+  color: #fff;
+}
