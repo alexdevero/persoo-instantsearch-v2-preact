@@ -1,0 +1,10 @@
+/* Base general styles */
+[class^='ais-'] {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 1rem;
+}
+
+a[class^='ais-'] {
+  text-decoration: none;
+}
