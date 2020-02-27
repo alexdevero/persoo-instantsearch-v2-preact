@@ -1,13 +1,22 @@
 /* Clear refinements */
+.ais-ClearRefinements {
+  color: #3a4570;
+}
+
 .ais-ClearRefinements-button {
+  padding: .3rem .5rem;
   overflow: visible;
-  padding: 0;
   font: inherit;
-  color: inherit;
+  font-size: .8rem;
   line-height: normal;
-  background: none;
+  color: #fff;
+  background-color: #0096db;
   border: 0;
+  border-radius: 5px;
   cursor: pointer;
+  outline: none;
+  -webkit-transition: background-color .2s ease-out;
+          transition: background-color .2s ease-out;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -21,21 +30,6 @@
 
 .ais-ClearRefinements-button[disabled] {
   cursor: default;
-}
-
-.ais-ClearRefinements {
-  color: #3a4570;
-}
-
-.ais-ClearRefinements-button {
-  padding: .3rem .5rem;
-  font-size: .8rem;
-  color: #fff;
-  background-color: #0096db;
-  border-radius: 5px;
-  outline: none;
-  -webkit-transition: background-color .2s ease-out;
-          transition: background-color .2s ease-out;
 }
 
 .ais-ClearRefinements-button:hover,
