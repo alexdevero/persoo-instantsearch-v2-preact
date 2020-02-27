@@ -1,10 +1,4 @@
 /* Results */
-.ais-Results-list {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
 .ais-Results {
   color: #3a4570;
 }
@@ -15,8 +9,11 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
   margin-top: -1rem;
   margin-left: -1rem;
+  list-style: none;
 }
 
 .ais-Panel-body .ais-Results-list {
