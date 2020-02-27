@@ -1,0 +1,117 @@
+/* Menu */
+.ais-Menu-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.ais-Menu,
+.ais-MenuSelect {
+  color: #3a4570;
+}
+
+.ais-Menu-item--selected {
+  font-weight: bold;
+}
+
+.ais-Menu-link {
+  color: #0096db;
+  -webkit-transition: color .2s ease-out;
+          transition: color .2s ease-out;
+}
+
+.ais-Menu-link:hover,
+.ais-Menu-link:focus {
+  color: #0073a8;
+}
+
+.ais-Menu-showMore {
+  padding: .3rem .5rem;
+  font-size: .8rem;
+  color: #fff;
+  background-color: #0096db;
+  border-radius: 5px;
+  outline: none;
+  -webkit-transition: background-color .2s ease-out;
+          transition: background-color .2s ease-out;
+}
+
+.ais-Menu-showMore {
+  overflow: visible;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  line-height: normal;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.ais-Menu-showMore::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+.ais-Menu-showMore:hover,
+.ais-Menu-showMore:focus {
+  background-color: #0073a8;
+}
+
+.ais-Menu-showMore--disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.ais-Menu-showMore[disabled] {
+  cursor: default;
+}
+
+.ais-Menu-showMore--disabled:hover,
+.ais-Menu-showMore--disabled:focus {
+  background-color: #0096db;
+}
+
+.ais-Menu-link {
+  display: block;
+  line-height: 1.5;
+}
+
+.ais-Menu-list {
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+.ais-Menu-count {
+  padding: .1rem .4rem;
+  font-size: .8rem;
+  color: #3a4570;
+  background-color: #dfe2ee;
+  border-radius: 8px;
+}
+
+.ais-Menu-showMore {
+  margin-top: .5rem;
+}
+
+.ais-MenuSelect-select {
+  -webkit-appearance: none;
+  padding: .3rem 2rem .3rem .3rem;
+  max-width: 100%;
+  background-color: #fff;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M0 7.3l2.8-2.8 9.2 9.3 9.2-9.3 2.8 2.8-12 12.2z%27 fill%3D%22%233A4570%22 /%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: 92% 50%;
+  background-size: 10px 10px;
+  border: 1px solid #c4c8d8;
+  border-radius: 5px;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.ais-Menu-searchBox > * {
+  margin-bottom: .5rem;
+}
