@@ -3,6 +3,8 @@
 import { Component } from 'preact'
 import algoliasearch from 'algoliasearch/lite'
 import instantsearch from 'instantsearch.js'
+
+// Import default widgets
 import {
   clearRefinements,
   currentRefinements,
@@ -13,6 +15,7 @@ import {
   menuSelect,
   numericMenu,
   pagination,
+  panel,
   rangeInput,
   rangeSlider,
   ratingMenu,
@@ -23,11 +26,19 @@ import {
   toggleRefinement
 } from 'instantsearch.js/es/widgets'
 
+// Import Algolia connectors
+import { connectHitsPerPage } from 'instantsearch.js/es/connectors'
+import { connectSortBy } from 'instantsearch.js/es/connectors'
+
+// Import custom widgets
+import { renderHitsPerPageCustom } from './widgets/hits-per-page-custom'
+import { renderSortByCustom } from './widgets/sort-by-custom'
+
 // Import Algolia styles
 import './styles/algolia-reset.css'
 // import './styles/algolia-satelite.css'
 
-// Import components
+// Import components' styles
 import './styles/components/base-general-styles.css'
 import './styles/components/breadcrumbs.css'
 import './styles/components/clear-refinements.css'
@@ -55,6 +66,9 @@ import './styles/components/stats.css'
 import './styles/components/toggle-refinement.css'
 import './styles/components/voice-search.css'
 
+// Import custom components' styles
+import './styles/custom-components/persoo-custom-select.css'
+
 // Import main stylesheet
 import './styles/style.css'
 
@@ -66,9 +80,59 @@ setTimeout(function() {
     searchClient
   })
 
+  const hitsPerPageCustom = connectHitsPerPage(renderHitsPerPageCustom)
+  const sortByCustom = connectSortBy(renderSortByCustom)
+
+  const refinementListWithPanel = panel({
+    templates: {
+      header: 'Brand'
+    }
+  })(refinementList)
+
   search.addWidgets([
+    // refinementListWithPanel({
+    //   container: '#refinement-list-with-panel',
+    //   attribute: 'brand'
+    // }),
+
     searchBox({
       container: '#persoo-searchbox'
+    }),
+
+    hitsPerPageCustom({
+      container: document.querySelector('#persoo-hits-per-page-custom'),
+      items: [
+        { label: '8 per page', value: 8, default: true },
+        { label: '16 per page', value: 16 },
+        { label: '32 per page', value: 32 }
+      ],
+      cssClasses: {
+        root: 'persoo-custom-per-page-root',
+        toggler: 'persoo-custom-per-page-toggler',
+        select: [
+          'persoo-custom-per-page',
+          'persoo-custom-per-page--subclass'
+        ],
+        item: 'persoo-custom-per-page-option'
+      }
+    }),
+
+    sortByCustom({
+      container: document.querySelector('#persoo-sort-by-custom'),
+      items: [
+        { label: 'Featured', value: 'instant_search' },
+        { label: 'Price (asc)', value: 'instant_search_price_asc' },
+        { label: 'Price (desc)', value: 'instant_search_price_desc' }
+      ],
+      cssClasses: {
+        root: 'persoo-custom-sort-by-root',
+        toggler: 'persoo-custom-sort-by-toggler',
+        select: [
+          'persoo-custom-sort-by',
+          'persoo-custom-sort-by--subclass'
+        ],
+        item: 'persoo-custom-sort-by-option'
+      }
     }),
 
     hits({
@@ -226,7 +290,7 @@ setTimeout(function() {
       // templates: object,
       // cssClassNamees: object,
       // transformItems: function,
-      container: '#persoo-brand-list',
+      container: '#persoo-refinement-list',
       attribute: 'brand',
       limit: 7,
       showMore: true,
@@ -246,7 +310,7 @@ setTimeout(function() {
       // pips: boolean,
       // tooltips: boolean|object,
       // cssClasses: object,
-      container: '#persoo-price',
+      container: '#persoo-range-slider',
       attribute: 'price',
       tooltips: true,
       pips: false
@@ -316,6 +380,10 @@ setTimeout(function() {
         root: 'persoo-stats-root',
         text: ['persoo-stats-text', 'persoo-stats-text--subclass']
       }
+    }),
+
+    searchBox({
+      container: '#persoo-searchbox'
     })
   ])
 
@@ -327,30 +395,52 @@ export default class App extends Component {
     return (
       <div className="container">
         <div className="left-panel">
+          <div id="persoo-filters-toggle">
+            Filtry
+          </div>
+
           <div className="categories">
-            <h2>Categories</h2>
+            <h3>Categories</h3>
 
             <div id="persoo-hierarchical-menu" />
           </div>
 
           <div className="brands">
-            <h2>Brands</h2>
+            <h3>Refinement list with panel</h3>
 
-            <div id="persoo-brand-list" />
+            <div id="#refinement-list-with-panel" />
+
+            <h3>Refinement list</h3>
+
+            <div id="persoo-refinement-list" />
+
+            <h3>Menu</h3>
 
             <div id="persoo-menu" />
 
+            <h3>Menu select</h3>
+
             <div id="persoo-menu-select" />
+
+            <h3>Toggle refinement</h3>
 
             <div id="persoo-toggle-refinement" />
 
+            <h3>Numeric menu</h3>
+
             <div id="persoo-numeric-menu" />
 
-            <div id="persoo-price" />
+            <h3>Range slider</h3>
 
-            <div id="persoo-rating-menu" />
+            <div id="persoo-range-slider" />
+
+            <h3>Range input</h3>
 
             <div id="persoo-range-input" />
+
+            <h3>Rating menu</h3>
+
+            <div id="persoo-rating-menu" />
           </div>
         </div>
 
@@ -359,15 +449,42 @@ export default class App extends Component {
             <div id="persoo-searchbox" />
 
             <div className="search-meta-filters">
-              <div id="persoo-clear-refinements" />
+              <div>
+                <h5>Stats</h5>
+                <div id="persoo-stats" />
+              </div>
 
-              <div id="persoo-current-refinements" />
+              <div>
+                <h5>Hits per page</h5>
+                <div id="persoo-hits-per-page" />
+              </div>
 
-              <div id="persoo-hits-per-page" />
+              <div>
+                <h5>Custom hits per page</h5>
+                <div id="persoo-hits-per-page-custom" />
+              </div>
 
-              <div id="persoo-sort-by" />
+              <div>
+                <h5>Sort by</h5>
+                <div id="persoo-sort-by" />
+              </div>
 
-              <div id="persoo-stats" />
+              <div>
+                <h5>Custom sort by</h5>
+                <div id="persoo-sort-by-custom" />
+              </div>
+            </div>
+
+            <div className="search-meta-filters">
+              <div>
+                <h5>Clear refinements</h5>
+                <div id="persoo-clear-refinements" />
+              </div>
+
+              <div>
+                <h5>Current refinements</h5>
+                <div id="persoo-current-refinements" />
+              </div>
             </div>
 
             <div id="persoo-hits" />
