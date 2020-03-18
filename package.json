@@ -29,9 +29,9 @@
     "preact-cli": "3.0.0-rc.6"
   },
   "dependencies": {
-    "algoliasearch": "4.0.3",
-    "instantsearch.js": "4.2.0",
-    "preact": "10.3.2",
+    "algoliasearch": "4.1.0",
+    "instantsearch.js": "4.3.1",
+    "preact": "10.3.4",
     "preact-render-to-string": "5.1.4"
   }
 }
