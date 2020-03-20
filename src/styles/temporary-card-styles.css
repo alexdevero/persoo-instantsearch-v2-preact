@@ -1,0 +1,14 @@
+/* Cards */
+.persoo-hits-item-image {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.persoo-hits-item-image img {
+  max-width: 100%;
+  height: auto;
+  max-height: 100px;
+}
