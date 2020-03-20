@@ -69,6 +69,9 @@ import './styles/components/voice-search.css'
 // Import custom components' styles
 import './styles/custom-components/persoo-custom-select.css'
 
+// Import temporary styles for cards
+import './styles/temporary-card-styles.css'
+
 // Import main stylesheet
 import './styles/style.css'
 
@@ -144,18 +147,18 @@ setTimeout(function() {
       templates: {
         empty: 'No results for <q>{{ query }}</q>',
         item: `
-          <div className="persoo-hits-item">
+          <div class="persoo-hits-item">
             <img src="{{image}}" align="left" alt="{{name}}" />
 
-            <div className="persoo-hits-item-name">
+            <div class="persoo-hits-item-name">
               {{#helpers.highlight}}{ "attribute": "name" }{{/helpers.highlight}}
             </div>
 
-            <div className="persoo-hits-item-description">
+            <div class="persoo-hits-item-description">
               {{#helpers.highlight}}{ "attribute": "description" }{{/helpers.highlight}}
             </div>
 
-            <div className="persoo-hits-item-price">\${{price}}</div>
+            <div class="persoo-hits-item-price">\${{price}}</div>
           </div>
         `
       }
