@@ -172,12 +172,16 @@
         urlSync: true
       })
 
-      search.addWidget(
-        persooInstantSearch.widgets.hits({
-          container: '#persoo-hits',
-          hitsPerPage: 12
+      search.addWidgets([
+        persooInstantSearch.widgets.searchBox({
+          container: '#persoo-searchbox'
         })
-      )
+
+          // persooInstantSearch.widgets.hits({
+          //   container: '#persoo-hits',
+          //   hitsPerPage: 12
+          // })
+      ])
 
       search.start()
     }, 1000);
