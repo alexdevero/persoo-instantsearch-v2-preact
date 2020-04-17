@@ -7,7 +7,7 @@
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
     "build": "preact build",
     "serve": "preact build && preact serve",
-    "dev": "preact watch --template src/index.html",
+    "dev": "preact watch --template public/index.html",
     "lint": "eslint src"
   },
   "browserslist": [
@@ -31,6 +31,7 @@
   "dependencies": {
     "algoliasearch": "4.1.0",
     "instantsearch.js": "4.4.0",
+    "persoo-templates": "^1.1.1",
     "preact": "10.4.0",
     "preact-render-to-string": "5.1.6"
   }

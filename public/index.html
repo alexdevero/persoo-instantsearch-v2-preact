@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Persoo Instant Search example</title>
+  <!-- <title><% preact.title %></title> -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="preact-boilerplate">
+  <meta name="msapplication-TileColor" content="#673ab8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="preact-boilerplate">
+  <meta name="application-name" content="preact-boilerplate">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#673ab8">
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <% preact.headEnd %>
+
+  <script type='text/javascript'>
+    /* Persoo account for testing real requests */
+    dataLayer = [{
+      pageType: 'search'
+    }];
+
+    var persooConfig = {
+      // apikey: 'n6i5ne3i0p2tkkvm1275lapv',  // hanibal.cz (production)
+      apikey: 'g8i7fdao17r5fpn2u72ph4rd',     // hanibal.cz (test-a clone)
+      persooName: 'persoo',
+      dataLayerName: 'dataLayer',
+      settings_tolerance: 2000,  // for loading persoo.js
+      personalizations_tolerance: 2500,    // for showing personalizations
+      rtpHostname: "rtp-test-a.persoo.cz:8081",
+      scriptsHostname: "//s3-eu-west-1.amazonaws.com/cz.persoo.test-a.javascripts/"
+    };
+
+    /*! Persoo js client 2015-03-16 */
+    var persooLoader=function(a,b,c,d,e){var f=d.persooName,g='_persoo_hide_body';return{hideBody:
+    function(){var b=a.createElement('style'),c='body{opacity:0 !important;filter:alpha(opacity=0)'
+    +' !important;background:none !important;}',d=a.getElementsByTagName('head')[0];b.setAttribute(
+    'id',g),b.setAttribute('type','text/css'),b.styleSheet?b.styleSheet.cssText=c:b.appendChild(
+    a.createTextNode(c)),d.appendChild(b)},finish:function(){if(!c){c=!0;var b=a.getElementById(g);b&&
+    b.parentNode.removeChild(b)}},loadScript:function(b){var c=a.createElement('script');c.src=b,c.type
+    ='text/javascript',c.onerror=function(){persooLoader.finish()},a.getElementsByTagName('head')[0
+    ].appendChild(c)},init:function(){b[f]=b[f]||function(){(b[f].q=b[f].q||[]).push([].slice.call(
+    arguments))},b[f].l=1*new Date,b[f].apikey=d.apikey,b[f].dataLayerName=d.dataLayerName;var c=
+    a.cookie.match('(^|; )'+e+'=([^;]*)'),g=location.search.match('[?&]'+e+'=([^&]*)'),h=g?g[1]:c?c[2]:
+    'p';d.settings_tolerance>0&&(setTimeout(this.finish,d.settings_tolerance),this.hideBody());var i=(
+    d.scriptsHostname||'//scripts.persoo.cz/')+d.apikey+'/'+h;this.loadScript(i+'/actions.js'),
+    this.loadScript(i+'/persoo.js')}}}(document,window,!1,persooConfig,'persooEnvironment');persooLoader.init();
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <div id="persoo-filters-toggle">
+        Filtry
+      </div>
+
+      <div class="categories">
+        <h3>Categories</h3>
+
+        <div id="persoo-hierarchical-menu"></div>
+      </div>
+
+      <div class="brands">
+        <h3>Refinement list with panel</h3>
+
+        <div id="refinement-list-with-panel"></div>
+
+        <h3>Refinement list</h3>
+
+        <div id="persoo-refinement-list"></div>
+
+        <h3>Menu</h3>
+
+        <div id="persoo-menu"></div>
+
+        <h3>Menu select</h3>
+
+        <div id="persoo-menu-select"></div>
+
+        <h3>Menu select custom</h3>
+
+        <div id="persoo-menu-select-custom"></div>
+
+        <h3>Toggle refinement</h3>
+
+        <div id="persoo-toggle-refinement"></div>
+
+        <h3>Numeric menu</h3>
+
+        <div id="persoo-numeric-menu"></div>
+
+        <h3>Range slider</h3>
+
+        <div id="persoo-range-slider"></div>
+
+        <h3>Range input</h3>
+
+        <div id="persoo-range-input"></div>
+
+        <h3>Rating menu</h3>
+
+        <div id="persoo-rating-menu"></div>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="right-panel__results">
+        <div id="persoo-searchbox"></div>
+
+        <div class="search-meta-filters">
+          <div>
+            <h5>Stats</h5>
+            <div id="persoo-stats"></div>
+          </div>
+
+          <div>
+            <h5>Hits per page</h5>
+            <div id="persoo-hits-per-page"></div>
+          </div>
+
+          <div>
+            <h5>Custom hits per page</h5>
+            <div id="persoo-hits-per-page-custom"></div>
+          </div>
+
+          <div>
+            <h5>Sort by</h5>
+            <div id="persoo-sort-by"></div>
+          </div>
+
+          <div>
+            <h5>Custom sort by</h5>
+            <div id="persoo-sort-by-custom"></div>
+          </div>
+        </div>
+
+        <div class="search-meta-filters">
+          <div>
+            <h5>Clear refinements</h5>
+            <div id="persoo-clear-refinements"></div>
+          </div>
+
+          <div>
+            <h5>Current refinements</h5>
+            <div id="persoo-current-refinements"></div>
+          </div>
+        </div>
+
+        <div id="persoo-hits"></div>
+      </div>
+
+      <div id="persoo-pagination"></div>
+    </div>
+  </div>
+
+  <script>
+    setTimeout(function() {
+      var persooAlgorithmID = 'df76f605499f42e092a888cc62c057ae'
+
+      var search = persooInstantSearch({
+        // algorithmID: 'df76f605499f42e092a888cc62c057ae', // hanibal.cz (production)
+        algorithmID: 'f720547c3be047b1bd55b650f3b18fa2', // hanibal.cz (test-a clone)
+        indexName: 'products',
+        // hideOnEmptyQuery: true,
+        requestThrottlingInMs: 200, // request throttling
+        urlSync: true
+      })
+
+      search.addWidget(
+        persooInstantSearch.widgets.hits({
+          container: '#persoo-hits',
+          hitsPerPage: 12
+        })
+      )
+
+      search.start()
+    }, 1000);
+  </script>
+
+  <% preact.bodyEnd %>
+</body>
+</html>
