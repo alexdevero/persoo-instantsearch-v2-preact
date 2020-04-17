@@ -1,5 +1,5 @@
-import Cache from 'cache'
-import { normalizeQuery, hashCode, throttle } from 'utils'
+import Cache from './cache'
+import { normalizeQuery, hashCode, throttle } from './utils'
 
 const DEBUG = false // true
 

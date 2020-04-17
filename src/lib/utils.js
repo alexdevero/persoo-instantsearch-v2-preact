@@ -1,8 +1,8 @@
 import { h, Component } from 'preact'
 
 import EJS from 'persoo-templates/lib/embeddedjs'
-import { getHighlightingFunc } from 'highlight-utils'
-import Cache from 'cache'
+import { getHighlightingFunc } from './highlight-utils'
+import Cache from './cache'
 
 /** Get function(data) returning rendered template.
  *  Template is either ESJ or plain string */
