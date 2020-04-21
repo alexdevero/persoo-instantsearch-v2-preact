@@ -153,6 +153,8 @@
         </div>
 
         <div id="persoo-hits"></div>
+
+        <div id="algolia-hits"></div>
       </div>
 
       <div id="persoo-pagination"></div>
@@ -163,7 +165,7 @@
     setTimeout(function() {
       var persooAlgorithmID = 'df76f605499f42e092a888cc62c057ae'
 
-      var search = persooInstantSearch({
+      var searchPersoo = persooInstantSearch({
         // algorithmID: 'df76f605499f42e092a888cc62c057ae', // hanibal.cz (production)
         algorithmID: 'f720547c3be047b1bd55b650f3b18fa2', // hanibal.cz (test-a clone)
         indexName: 'products',
@@ -172,18 +174,49 @@
         urlSync: true
       })
 
-      search.addWidgets([
+      searchPersoo.addWidgets([
         persooInstantSearch.widgets.searchBox({
           container: '#persoo-searchbox'
-        })
+        }),
 
-          // persooInstantSearch.widgets.hits({
-          //   container: '#persoo-hits',
-          //   hitsPerPage: 12
-          // })
+        persooInstantSearch.widgets.hits({
+          container: '#persoo-hits',
+          hitsPerPage: 12
+        })
       ])
 
-      search.start()
+
+      const searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76')
+
+      const searchAlgolia = instantsearch({
+        indexName: 'instant_search',
+        searchClient
+      })
+
+      searchAlgolia.addWidgets([
+        window.hits({
+          container: '#algolia-hits',
+          cssClasses: {
+            root: 'persoo-hits',
+            list: ['persoo-hits-list', 'persoo-hits-list--subclass']
+          }
+        })
+      ])
+
+      try {
+        searchAlgolia.start()
+      }
+      catch(err) {
+        console.error(err)
+      }
+
+
+      try {
+        searchPersoo.start()
+      }
+      catch(err) {
+        console.error(err)
+      }
     }, 1000);
   </script>
 
