@@ -4,6 +4,9 @@ import { Component } from 'preact'
 import algoliasearch from 'algoliasearch/lite'
 import instantsearch from 'instantsearch.js'
 
+// Import Promise polyfill
+import 'promise-polyfill/src/polyfill'
+
 // Import default widgets
 import {
   clearRefinements,
@@ -94,7 +97,7 @@ function createInstantSearchConnector(options) {
     createAlgoliaClient: function(algoliasearch, appId, apiKey) {
       return searchClient
     },
-    urlSync: options.urlSync || false
+    routing: options.routing || false
   }
 
   if (options.hideOnEmptyQuery) {
@@ -124,6 +127,11 @@ window.persooInstantSearch = createInstantSearchConnector
 window.persooInstantSearch.EJS = getRenderFunction
 window.persooInstantSearch.throttle = throttle
 window.persooInstantSearch.widgets = instantSearchWidgets
+
+
+window.algoliasearch = algoliasearch
+window.instantsearch = instantsearch
+window.hits = hits
 
 // const searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76')
 
