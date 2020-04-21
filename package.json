@@ -33,6 +33,7 @@
     "instantsearch.js": "4.4.0",
     "persoo-templates": "^1.1.1",
     "preact": "10.4.0",
-    "preact-render-to-string": "5.1.6"
+    "preact-render-to-string": "5.1.6",
+    "promise-polyfill": "^8.1.3"
   }
 }
