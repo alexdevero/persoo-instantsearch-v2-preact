@@ -179,36 +179,62 @@
           container: '#persoo-searchbox'
         }),
 
+        persooInstantSearch.widgets.hitsPerPage({
+          container: '#persoo-hits-per-page',
+          items: [
+            { label: '8 hits per page', value: 8, default: true },
+            { label: '16 hits per page', value: 16 }
+          ]
+        }),
+
         persooInstantSearch.widgets.hits({
           container: '#persoo-hits',
+          hitsPerPage: 12
+        }),
+
+        persooInstantSearch.widgets.pagination({
+          container: '#persoo-pagination',
           hitsPerPage: 12
         })
       ])
 
 
-      const searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76')
+      // const searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76')
 
-      const searchAlgolia = instantsearch({
-        indexName: 'instant_search',
-        searchClient
-      })
+      // const searchAlgolia = instantsearch({
+      //   indexName: 'instant_search',
+      //   searchClient
+      // })
 
-      searchAlgolia.addWidgets([
-        window.hits({
-          container: '#algolia-hits',
-          cssClasses: {
-            root: 'persoo-hits',
-            list: ['persoo-hits-list', 'persoo-hits-list--subclass']
-          }
-        })
-      ])
+      // searchAlgolia.addWidgets([
+      //   window.hits({
+      //     container: '#algolia-hits',
+      //     cssClasses: {
+      //       root: 'persoo-hits',
+      //       list: ['persoo-hits-list', 'persoo-hits-list--subclass']
+      //     }
+      //   }),
 
-      try {
-        searchAlgolia.start()
-      }
-      catch(err) {
-        console.error(err)
-      }
+      //   window.hitsPerPage({
+      //     container: '#persoo-hits-per-page',
+      //     items: [
+      //       { label: '8 hits per page', value: 8, default: true },
+      //       { label: '16 hits per page', value: 16 }
+      //     ]
+      //   }),
+
+      //   window.pagination({
+      //     container: '#persoo-pagination',
+      //     hitsPerPage: 12
+      //   })
+      // ])
+
+      // try {
+      //   searchAlgolia.start()
+      // }
+      // catch(err) {
+      //   console.error(err)
+      // }
 
 
       try {
