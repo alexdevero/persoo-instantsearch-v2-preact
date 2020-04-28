@@ -116,6 +116,10 @@ function createInstantSearchConnector(options) {
 
   const instantSearchInstance = instantsearch(instantSearchOptions)
 
+  instantSearchInstance.addListener('error', function(data) {
+    console.log('Persoo error handler', JSON.stringify(arguments))
+  })
+
   instantSearchInstance.setPersooCallback = function(name, func) {
     callbacks[name] = func
   }
@@ -131,7 +135,9 @@ window.persooInstantSearch.widgets = instantSearchWidgets
 
 window.algoliasearch = algoliasearch
 window.instantsearch = instantsearch
-window.hits = hits
+// window.hits = hits
+// window.hitsPerPage = hitsPerPage
+// window.pagination = pagination
 
 // const searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76')
 

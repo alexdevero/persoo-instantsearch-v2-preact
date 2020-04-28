@@ -20,6 +20,8 @@ const DEBUG = false // true
 */
 
 function translateResponse(data, persooEventProps) {
+  // receivedData = translateResponse(data, persooEventProps)
+
   function translateAggregationGroup(aggregationsGroup) {
     var map = {}
 
@@ -231,15 +233,164 @@ export default class PersooInstantSearchClient {
       batchRequestCount: 0
     }
 
+    // var algoliaContent = {
+    //   "hits": [
+    //     {
+    //       "name": "Nintendo - amiibo Figure (The Legend of Zelda: Breath of the Wild Series Bokoblin)",
+    //       "description": "These creatures have appeared in many games in the Legend of Zelda series, but never have they been more dangerous and resourceful. This amiibo features a standard red Bokoblin carrying a rudimentary Boko Club, but many nastier varieties lurk in the wilds of Hyrule.",
+    //       "brand": "Nintendo",
+    //       "categories": [
+    //         "Video Games",
+    //         "Toys to Life",
+    //         "Amiibo"
+    //       ],
+    //       "hierarchicalCategories": {
+    //         "lvl0": "Video Games",
+    //         "lvl1": "Video Games > Toys to Life",
+    //         "lvl2": "Video Games > Toys to Life > Amiibo"
+    //       },
+    //       "type": "Toy 2 life character",
+    //       "price": 15.99,
+    //       "price_range": "1 - 50",
+    //       "image": "https://cdn-demo.algolia.com/bestbuy-0118/5723548_sb.jpg",
+    //       "url": "https://api.bestbuy.com/click/-/5723548/pdp",
+    //       "free_shipping": false,
+    //       "rating": 0,
+    //       "popularity": 21450,
+    //       "objectID": "5723548",
+    //       "_highlightResult": {
+    //         "name": {
+    //           "value": "Nintendo - amiibo Figure (The Legend of Zelda: Breath of the Wild Series Bokoblin)",
+    //           "matchLevel": "none",
+    //           "matchedWords": []
+    //         },
+    //         "description": {
+    //           "value": "These creatures have appeared in many games in the Legend of Zelda series, but never have they been more dangerous and resourceful. This amiibo features a standard red Bokoblin carrying a rudimentary Boko Club, but many nastier varieties lurk in the wilds of Hyrule.",
+    //           "matchLevel": "none",
+    //           "matchedWords": []
+    //         },
+    //         "brand": {
+    //           "value": "Nintendo",
+    //           "matchLevel": "none",
+    //           "matchedWords": []
+    //         },
+    //         "categories": [
+    //           {
+    //             "value": "Video Games",
+    //             "matchLevel": "none",
+    //             "matchedWords": []
+    //           },
+    //           {
+    //             "value": "Toys to Life",
+    //             "matchLevel": "none",
+    //             "matchedWords": []
+    //           },
+    //           {
+    //             "value": "Amiibo",
+    //             "matchLevel": "none",
+    //             "matchedWords": []
+    //           }
+    //         ],
+    //         "type": {
+    //           "value": "Toy 2 life character",
+    //           "matchLevel": "none",
+    //           "matchedWords": []
+    //         }
+    //       }
+    //     }
+    //   ],
+    //   "nbHits": 1,
+    //   "page": 0,
+    //   "nbPages": 1,
+    //   "hitsPerPage": 20,
+    //   "exhaustiveNbHits": true,
+    //   "query": "",
+    //   "queryAfterRemoval": "",
+    //   "params": "highlightPreTag=__ais-highlight__&highlightPostTag=__%2Fais-highlight__&facets=%5B%5D&tagFilters=",
+    //   "index": "instant_search",
+    //   "processingTimeMS": 1
+    // }
+
     var cache = this.cache;
     var statistics = this.statistics;
 
-    function searchFunction(requests, algoliaCallback) {
+    var options = this.options
+
+    function searchFunction(query, i) {
+      // query: {"indexName":"instant_search","params":{"highlightPreTag":"__ais-highlight__","highlightPostTag":"__/ais-highlight__","facets":[],"tagFilters":""}}
+
+      console.log('query', query)
+
+      return new Promise(function(resolve, reject) {
+        // var queryId = statistics.batchRequestCount
+        var params = {
+          query: query.params.query || '',
+          hitsPerPage: query.params.hitsPerPage || 8,
+          page: query.params.page || 0,
+          maxValuesPerFacet: 1
+        }
+
+        var persooProps = preparePersooRequestProps(options, params, query.indexName)
+        var queryHash = hashCode(JSON.stringify(persooProps)) // without requestID
+        var externalRequestID = statistics.batchRequestCount + '_' + i
+
+        persooProps.externalRequestID = externalRequestID
+
+        if (DEBUG) {
+          console.log('... persoo.send('  + JSON.stringify(persooProps) + ')')
+        }
+
+        var cachedResponse = cache.get(queryHash);
+        if (cachedResponse) {
+          if (DEBUG) {
+            console.log('... Serving data from cache: ' + JSON.stringify(cachedResponse.items.length) + ' items.')
+          }
+
+          cachedResponse.externalRequestID = externalRequestID
+
+          resolve(cachedResponse)
+          // mergeCallback(persooProps, queryHash, cachedResponse)
+        } else {
+          persoo('send', persooProps, function(data) {
+            // resolve(data)
+            var receivedData = translateResponse(data, persooProps)
+            resolve(receivedData)
+            // resolve(algoliaContent)
+          })
+
+          persoo('onError', function() {
+            reject({ error: {message: 'Persoo server error'}})
+          })
+        }
+      })
+    }
+
+    function searchFunctionBatch(queries) {
+      // queries: [{"indexName":"instant_search","params":{"highlightPreTag":"__ais-highlight__","highlightPostTag":"__/ais-highlight__","facets":[],"tagFilters":""}}]
+
       if (DEBUG) {
-        console.log('persooInstantSearchClient.search(' + JSON.stringify(requests) + ')')
+        console.log('persooInstantSearchClient.search(' + JSON.stringify(queries) + ')')
       }
 
       statistics.batchRequestCount++
+
+      var promisesToBeResolved = []
+
+      for (var pIdx = 0; pIdx < queries.length; pIdx++) {
+        promisesToBeResolved.push(
+          searchFunction(queries[pIdx], pIdx)
+        )
+      }
+
+      return new Promise(function(resolve, reject) {
+        Promise.all(promisesToBeResolved)
+          .then(function(data) {
+            resolve({ results: data })
+          })
+          .catch(function(err) {
+            reject(err)
+          })
+      })
 
       // Algolia Client accepts batch requests, i.e. list of requests, one request is i.e.
       // [{"indexName":"YourIndexName","params":{"query":"a","hitsPerPage":20,"page":0,"facets":[],"tagFilters":""}}]
@@ -282,11 +433,11 @@ export default class PersooInstantSearchClient {
     }
 
     // throttle requests for people who type extremly fast
-    var searchFunctionThrottled = throttle(searchFunction, this.options.requestThrottlingInMs, false)
+    // var searchFunctionBatchThrottled = throttle(searchFunctionBatch, this.options.requestThrottlingInMs, false)
 
     return {
       addAlgoliaAgent: function() {},
-      search: searchFunctionThrottled
+      search: searchFunctionBatch // searchFunctionBatchThrottled
     }
   }
 }
