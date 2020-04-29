@@ -175,27 +175,246 @@
       })
 
       searchPersoo.addWidgets([
-        persooInstantSearch.widgets.searchBox({
-          container: '#persoo-searchbox'
+        persooInstantSearch.widgets.clearRefinements({
+          container: '#persoo-clear-refinements',
+          cssClasses: {
+            root: 'persoo-clear-refinements-root',
+            button: 'persoo-clear-refinements-button',
+            disabledButton: 'persoo-clear-refinements-disabled-button'
+          }
         }),
 
-        persooInstantSearch.widgets.hitsPerPage({
-          container: '#persoo-hits-per-page',
-          items: [
-            { label: '8 hits per page', value: 8, default: true },
-            { label: '16 hits per page', value: 16 }
+        persooInstantSearch.widgets.currentRefinements({
+          container: '#persoo-current-refinements',
+          cssClasses: {
+            root: 'persoo-refinement-root',
+            list: 'persoo-refinement-list',
+            item: 'persoo-refinement-item',
+            label: 'persoo-refinement-label',
+            category: 'persoo-refinement-category',
+            categoryLabel: 'persoo-refinement-category-label',
+            delete: 'persoo-refinement-delete'
+          }
+        }),
+
+        persooInstantSearch.widgets.hierarchicalMenu({
+          // Docs: https://www.algolia.com/doc/api-reference/widgets/hierarchical-menu/js/
+          // container: string|HTMLElement,
+          // attributes: string[],
+
+          // Optional parameters:
+          // limit: number,
+          // showMore: boolean,
+          // showMoreLimit: number,
+          // separator: string,
+          // rootPath: string,
+          // showParentLevel: boolean,
+          // sortBy: string[]|function,
+          // templates: object,
+          // cssClassNames: object,
+          // transformItems: function,
+          container: '#persoo-hierarchical-menu',
+          limit: 7,
+          showMore: true,
+          attributes: [
+            'hierarchicalCategories.lvl0',
+            'hierarchicalCategories.lvl1',
+            'hierarchicalCategories.lvl2',
+            'hierarchicalCategories.lvl3'
           ]
         }),
 
         persooInstantSearch.widgets.hits({
           container: '#persoo-hits',
-          hitsPerPage: 12
+          cssClasses: {
+            root: 'persoo-hits',
+            list: ['persoo-hits-list', 'persoo-hits-list--subclass']
+          }
+        }),
+
+        persooInstantSearch.widgets.hitsPerPage({
+          container: '#persoo-hits-per-page',
+          items: [
+            { label: '8 per page', value: 8, default: true },
+            { label: '16 per page', value: 16 },
+            { label: '32 per page', value: 32 }
+          ],
+          cssClasses: {
+            root: 'persoo-custom-per-page-root',
+            toggler: 'persoo-custom-per-page-toggler',
+            select: [
+              'persoo-custom-per-page',
+              'persoo-custom-per-page--subclass'
+            ],
+            item: 'persoo-custom-per-page-option'
+          }
+        }),
+        persooInstantSearch.widgets.menu({
+          container: '#persoo-menu',
+          attribute: 'categories',
+          limit: 5,
+          showMore: true,
+          cssClasses: {
+            root: 'persoo-menu',
+            list: [
+              'persoo-menu-list',
+              'persoo-menu-list--sub-class'
+            ]
+          }
+        }),
+
+        persooInstantSearch.widgets.menuSelect({
+          container: '#persoo-menu-select',
+          attribute: 'categories',
+          limit: 5,
+          showMore: true,
+          cssClasses: {
+            root: 'persoo-menu-select',
+            list: [
+              'persoo-menu-select-list',
+              'persoo-menu-select-list--sub-class'
+            ]
+          }
+        }),
+
+        persooInstantSearch.widgets.numericMenu({
+          container: '#persoo-numeric-menu',
+          attribute: 'price',
+          items: [
+            { label: 'All' },
+            { label: 'Less than 500$', end: 500 },
+            { label: 'Between 500$ - 1000$', start: 500, end: 1000 },
+            { label: 'More than 1000$', start: 1000 }
+          ]
         }),
 
         persooInstantSearch.widgets.pagination({
           container: '#persoo-pagination',
-          hitsPerPage: 12
-        })
+          cssClasses: {
+            root: 'persoo-pagination',
+            noRefinementRoot: 'persoo-pagination--empty',
+            list: 'persoo-pagination-list',
+            item: 'persoo-pagination-item',
+            firstPageItem: 'persoo-pagination-first-page-item',
+            lastPageItem: 'persoo-pagination-last-page-item',
+            previousPageItem: 'persoo-pagination-previous-page-item',
+            nextPageItem: 'persoo-pagination-next-page-item',
+            pageItem: 'persoo-pagination-page-item',
+            selectedItem: 'persoo-pagination-selected-item',
+            disabledItem: 'persoo-pagination-disabled-item',
+            link: 'persoo-pagination-link'
+          }
+        }),
+
+        // persooInstantSearch.widgets.rangeSlider({
+        //   // Docs: https://www.algolia.com/doc/api-reference/widgets/range-slider/js/
+        //   // container: string|HTMLElement,
+        //   // attribute: string,
+
+        //   // Optional parameters:
+        //   // min: number,
+        //   // max: number,
+        //   // precision: number,
+        //   // step: number,
+        //   // pips: boolean,
+        //   // tooltips: boolean|object,
+        //   // cssClasses: object,
+        //   container: '#persoo-range-slider',
+        //   attribute: 'price',
+        //   tooltips: true,
+        //   pips: false
+        // }),
+
+        persooInstantSearch.widgets.refinementList({
+          // Docs: https://www.algolia.com/doc/api-reference/widgets/refinement-list/js/
+          // container: string|HTMLElement,
+          // attribute: string,
+
+          // Optional parameters:
+          // operator: string,
+          // limit: number,
+          // showMore: boolean,
+          // showMoreLimit: number,
+          // searchable: boolean,
+          // searchablePlaceholder: string,
+          // searchableIsAlwaysActive: boolean,
+          // searchableEscapeFacetValues: boolean,
+          // sortBy: string[]|function,
+          // templates: object,
+          // cssClassNamees: object,
+          // transformItems: function,
+          container: '#persoo-refinement-list',
+          attribute: 'brand',
+          limit: 7,
+          showMore: true,
+          searchable: true
+        }),
+
+        persooInstantSearch.widgets.refinementListWithPanel({
+          container: '#refinement-list-with-panel',
+          attribute: 'brand'
+        }),
+
+        persooInstantSearch.widgets.ratingMenu({
+          container: '#persoo-rating-menu',
+          attribute: 'rating',
+          max: 5,
+          cssClasses: {
+            root: 'persoo-rating-menu-root',
+            noRefinementRoot: 'persoo-rating-menu-no-refinement-root',
+            list: 'persoo-rating-menu-list',
+            item: 'persoo-rating-menu-item',
+            selectedItem: 'persoo-rating-menu-selected-item',
+            disabledItem: 'persoo-rating-menu-disabled-item',
+            starIcon: 'persoo-rating-menu-starIcon',
+            fullStarIcon: 'persoo-rating-menu-full-star-icon',
+            emptyStarIcon: 'persoo-rating-menu-empty-star-icon',
+            label: 'persoo-rating-menu-label',
+            count: 'persoo-rating-menu-count'
+          }
+        }),
+
+        persooInstantSearch.widgets.rangeInput({
+          container: '#persoo-range-input',
+          attribute: 'price'
+        }),
+
+        persooInstantSearch.widgets.searchBox({
+          container: '#persoo-searchbox'
+        }),
+
+        persooInstantSearch.widgets.sortBy({
+          container: '#persoo-sort-by',
+          items: [
+            { label: 'Featured', value: 'instant_search' },
+            { label: 'Price (asc)', value: 'instant_search_price_asc' },
+            { label: 'Price (desc)', value: 'instant_search_price_desc' }
+          ]
+        }),
+
+        persooInstantSearch.widgets.stats({
+          container: '#persoo-stats',
+          cssClasses: {
+            root: 'persoo-stats-root',
+            text: ['persoo-stats-text', 'persoo-stats-text--subclass']
+          }
+        }),
+
+        persooInstantSearch.widgets.toggleRefinement({
+          container: '#persoo-toggle-refinement',
+          attribute: 'free_shipping',
+          cssClasses: {
+            root: 'persoo-toggle-refinment-root',
+            label: 'persoo-toggle-refinment-label',
+            checkbox: 'persoo-toggle-refinment-checkbox',
+            labelText: 'persoo-toggle-refinment-labelText'
+          },
+          templates: {
+            labelText: 'Free shipping'
+          }
+        }),
+
+        // persooInstantSearch.widgets.
       ])
 
 
