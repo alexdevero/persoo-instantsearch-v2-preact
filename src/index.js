@@ -1,33 +1,33 @@
 // https://www.algolia.com/doc/api-reference/widgets/js/
 
-import { Component } from 'preact'
-import algoliasearch from 'algoliasearch/lite'
+// import { Component } from 'preact'
+// import algoliasearch from 'algoliasearch/lite'
 import instantsearch from 'instantsearch.js'
 
 // Import Promise polyfill
 import 'promise-polyfill/src/polyfill'
 
 // Import default widgets
-import {
-  clearRefinements,
-  currentRefinements,
-  hierarchicalMenu,
-  hits,
-  hitsPerPage,
-  menu,
-  menuSelect,
-  numericMenu,
-  pagination,
-  panel,
-  rangeInput,
-  rangeSlider,
-  ratingMenu,
-  refinementList,
-  searchBox,
-  sortBy,
-  stats,
-  toggleRefinement
-} from 'instantsearch.js/es/widgets'
+// import {
+//   clearRefinements,
+//   currentRefinements,
+//   hierarchicalMenu,
+//   hits,
+//   hitsPerPage,
+//   menu,
+//   menuSelect,
+//   numericMenu,
+//   pagination,
+//   panel,
+//   rangeInput,
+//   rangeSlider,
+//   ratingMenu,
+//   refinementList,
+//   searchBox,
+//   sortBy,
+//   stats,
+//   toggleRefinement
+// } from 'instantsearch.js/es/widgets'
 
 // Import Algolia connectors
 import { connectHitsPerPage, connectSortBy, connectMenu } from 'instantsearch.js/es/connectors'
@@ -133,8 +133,8 @@ window.persooInstantSearch.throttle = throttle
 window.persooInstantSearch.widgets = instantSearchWidgets
 
 
-window.algoliasearch = algoliasearch
-window.instantsearch = instantsearch
+// window.algoliasearch = algoliasearch
+// window.instantsearch = instantsearch
 // window.hits = hits
 // window.hitsPerPage = hitsPerPage
 // window.pagination = pagination
@@ -158,15 +158,6 @@ window.instantsearch = instantsearch
 //   })(refinementList)
 
 //   search.addWidgets([
-//     // refinementListWithPanel({
-//     //   container: '#refinement-list-with-panel',
-//     //   attribute: 'brand'
-//     // }),
-
-//     searchBox({
-//       container: '#persoo-searchbox'
-//     }),
-
 //     hitsPerPageCustom({
 //       container: document.querySelector('#persoo-hits-per-page-custom'),
 //       items: [
@@ -231,37 +222,6 @@ window.instantsearch = instantsearch
 //       }
 //     }),
 
-//     currentRefinements({
-//       container: '#persoo-current-refinements',
-//       cssClasses: {
-//         root: 'persoo-refinement-root',
-//         list: 'persoo-refinement-list',
-//         item: 'persoo-refinement-item',
-//         label: 'persoo-refinement-label',
-//         category: 'persoo-refinement-category',
-//         categoryLabel: 'persoo-refinement-category-label',
-//         delete: 'persoo-refinement-delete'
-//       }
-//     }),
-
-//     pagination({
-//       container: '#persoo-pagination',
-//       cssClasses: {
-//         root: 'persoo-pagination',
-//         noRefinementRoot: 'persoo-pagination--empty',
-//         list: 'persoo-pagination-list',
-//         item: 'persoo-pagination-item',
-//         firstPageItem: 'persoo-pagination-first-page-item',
-//         lastPageItem: 'persoo-pagination-last-page-item',
-//         previousPageItem: 'persoo-pagination-previous-page-item',
-//         nextPageItem: 'persoo-pagination-next-page-item',
-//         pageItem: 'persoo-pagination-page-item',
-//         selectedItem: 'persoo-pagination-selected-item',
-//         disabledItem: 'persoo-pagination-disabled-item',
-//         link: 'persoo-pagination-link'
-//       }
-//     }),
-
 //     menu({
 //       container: '#persoo-menu',
 //       attribute: 'categories',
@@ -311,22 +271,6 @@ window.instantsearch = instantsearch
 //         { label: 'Price (asc)', value: 'instant_search_price_asc' },
 //         { label: 'Price (desc)', value: 'instant_search_price_desc' }
 //       ]
-//     }),
-
-//     hitsPerPage({
-//       container: '#persoo-hits-per-page',
-//       items: [
-//         { label: '8 hits per page', value: 8, default: true },
-//         { label: '16 hits per page', value: 16 },
-//         { label: '32 hits per page', value: 32 }
-//       ],
-//       cssClasses: {
-//         root: 'persoo-hits-per-page',
-//         select: [
-//           'persoo-hits-per-page-select',
-//           'persoo-hits-per-page-select--subclass',
-//         ]
-//       }
 //     }),
 
 //     hierarchicalMenu({
@@ -399,76 +343,6 @@ window.instantsearch = instantsearch
 //       tooltips: true,
 //       pips: false
 //     }),
-
-//     toggleRefinement({
-//       container: '#persoo-toggle-refinement',
-//       attribute: 'free_shipping',
-//       cssClasses: {
-//         root: 'persoo-toggle-refinment-root',
-//         label: 'persoo-toggle-refinment-label',
-//         checkbox: 'persoo-toggle-refinment-checkbox',
-//         labelText: 'persoo-toggle-refinment-labelText'
-//       },
-//       templates: {
-//         labelText: 'Free shipping'
-//       }
-//     }),
-
-//     numericMenu({
-//       container: '#persoo-numeric-menu',
-//       attribute: 'price',
-//       items: [
-//         { label: 'All' },
-//         { label: 'Less than 500$', end: 500 },
-//         { label: 'Between 500$ - 1000$', start: 500, end: 1000 },
-//         { label: 'More than 1000$', start: 1000 }
-//       ]
-//     }),
-
-//     ratingMenu({
-//       container: '#persoo-rating-menu',
-//       attribute: 'rating',
-//       max: 5,
-//       cssClasses: {
-//         root: 'persoo-rating-menu-root',
-//         noRefinementRoot: 'persoo-rating-menu-no-refinement-root',
-//         list: 'persoo-rating-menu-list',
-//         item: 'persoo-rating-menu-item',
-//         selectedItem: 'persoo-rating-menu-selected-item',
-//         disabledItem: 'persoo-rating-menu-disabled-item',
-//         starIcon: 'persoo-rating-menu-starIcon',
-//         fullStarIcon: 'persoo-rating-menu-full-star-icon',
-//         emptyStarIcon: 'persoo-rating-menu-empty-star-icon',
-//         label: 'persoo-rating-menu-label',
-//         count: 'persoo-rating-menu-count'
-//       }
-//     }),
-
-//     rangeInput({
-//       container: '#persoo-range-input',
-//       attribute: 'price'
-//     }),
-
-//     clearRefinements({
-//       container: '#persoo-clear-refinements',
-//       cssClasses: {
-//         root: 'persoo-clear-refinements-root',
-//         button: 'persoo-clear-refinements-button',
-//         disabledButton: 'persoo-clear-refinements-disabled-button'
-//       }
-//     }),
-
-//     stats({
-//       container: '#persoo-stats',
-//       cssClasses: {
-//         root: 'persoo-stats-root',
-//         text: ['persoo-stats-text', 'persoo-stats-text--subclass']
-//       }
-//     }),
-
-//     searchBox({
-//       container: '#persoo-searchbox'
-//     })
 //   ])
 
 //   search.start()
