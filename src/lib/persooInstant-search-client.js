@@ -324,10 +324,11 @@ export default class PersooInstantSearchClient {
       return new Promise(function(resolve, reject) {
         // var queryId = statistics.batchRequestCount
         var params = {
-          query: query.params.query || '',
           hitsPerPage: query.params.hitsPerPage || 8,
+          maxValuesPerFacet: query.params.maxValuesPerFacet || 20,
           page: query.params.page || 0,
-          maxValuesPerFacet: 1
+          query: query.params.query || '',
+          tagFilters: query.params.tagFilters || ''
         }
 
         var persooProps = preparePersooRequestProps(options, params, query.indexName)
