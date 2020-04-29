@@ -229,15 +229,39 @@
           cssClasses: {
             root: 'persoo-hits',
             list: ['persoo-hits-list', 'persoo-hits-list--subclass']
+          },
+          templates: {
+            empty: 'No results for <q>{{ query }}</q>',
+            item: `
+              <div class="persoo-hits-item">
+                <div class="persoo-hits-item-image">
+                  <img src="{{imageLink}}" align="{{imageLink}}" alt="{{title}}" />
+                </div>
+
+                <div class="persoo-hits-item-name">
+                  {{#helpers.highlight}}{ "attribute": "title", "highlightedTagName": "mark" }{{/helpers.highlight}}
+                  <h4>{{title}}</h4>
+                </div>
+
+                <div class="persoo-hits-item-description">
+                  {{#helpers.highlight}}{ "attribute": "description", "highlightedTagName": "mark" }{{/helpers.highlight}}
+                  {{description}}
+                </div>
+
+                <div class="persoo-hits-item-price">
+                  {{price}} Kč
+                </div>
+              </div>
+            `
           }
         }),
 
         persooInstantSearch.widgets.hitsPerPage({
           container: '#persoo-hits-per-page',
           items: [
-            { label: '8 per page', value: 8, default: true },
-            { label: '16 per page', value: 16 },
-            { label: '32 per page', value: 32 }
+            { label: '8 na stránku', value: 8, default: true },
+            { label: '16 na stránku', value: 16 },
+            { label: '32 na stránku', value: 32 }
           ],
           cssClasses: {
             root: 'persoo-custom-per-page-root',
@@ -251,7 +275,7 @@
         }),
         persooInstantSearch.widgets.menu({
           container: '#persoo-menu',
-          attribute: 'categories',
+          attribute: 'category',
           limit: 5,
           showMore: true,
           cssClasses: {
@@ -265,7 +289,7 @@
 
         persooInstantSearch.widgets.menuSelect({
           container: '#persoo-menu-select',
-          attribute: 'categories',
+          attribute: 'productType',
           limit: 5,
           showMore: true,
           cssClasses: {
@@ -281,10 +305,10 @@
           container: '#persoo-numeric-menu',
           attribute: 'price',
           items: [
-            { label: 'All' },
-            { label: 'Less than 500$', end: 500 },
-            { label: 'Between 500$ - 1000$', start: 500, end: 1000 },
-            { label: 'More than 1000$', start: 1000 }
+            { label: 'Vše' },
+            { label: 'Méně než 5000 Kč', end: 5000 },
+            { label: 'Mezi 5000 a 10000 Kč', start: 5000, end: 10000 },
+            { label: 'Více než 10000 Kč', start: 10000 }
           ]
         }),
 
@@ -344,16 +368,16 @@
           // cssClassNamees: object,
           // transformItems: function,
           container: '#persoo-refinement-list',
-          attribute: 'brand',
+          attribute: 'gender',
           limit: 7,
           showMore: true,
           searchable: true
         }),
 
-        persooInstantSearch.widgets.refinementListWithPanel({
-          container: '#refinement-list-with-panel',
-          attribute: 'brand'
-        }),
+        // persooInstantSearch.widgets.refinementListWithPanel({
+        //   container: '#refinement-list-with-panel',
+        //   attribute: 'brand'
+        // }),
 
         persooInstantSearch.widgets.ratingMenu({
           container: '#persoo-rating-menu',
@@ -386,9 +410,9 @@
         persooInstantSearch.widgets.sortBy({
           container: '#persoo-sort-by',
           items: [
-            { label: 'Featured', value: 'instant_search' },
-            { label: 'Price (asc)', value: 'instant_search_price_asc' },
-            { label: 'Price (desc)', value: 'instant_search_price_desc' }
+            { label: 'Featured', value: 'products' },
+            { label: 'Nejlevnější', value: 'products_price_asc' },
+            { label: 'Nejdražší', value: 'products_price_desc' }
           ]
         }),
 
@@ -410,43 +434,51 @@
             labelText: 'persoo-toggle-refinment-labelText'
           },
           templates: {
-            labelText: 'Free shipping'
+            labelText: 'Doprava zdarma'
           }
         }),
-
-        // persooInstantSearch.widgets.
       ])
 
 
-      // const searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76')
+      const searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76')
 
-      // const searchAlgolia = instantsearch({
-      //   indexName: 'instant_search',
-      //   searchClient
-      // })
+      const searchAlgolia = instantsearch({
+        indexName: 'instant_search',
+        searchClient
+      })
 
-      // searchAlgolia.addWidgets([
-      //   window.hits({
-      //     container: '#algolia-hits',
-      //     cssClasses: {
-      //       root: 'persoo-hits',
-      //       list: ['persoo-hits-list', 'persoo-hits-list--subclass']
-      //     }
-      //   }),
+      searchAlgolia.addWidgets([
+        window.hits({
+          container: '#persoo-hits',
+          cssClasses: {
+            root: 'persoo-hits',
+            list: ['persoo-hits-list', 'persoo-hits-list--subclass']
+          },
+          templates: {
+            empty: 'No results for <q>{{ query }}</q>',
+            item: `
+              <div class="persoo-hits-item">
+                <div class="persoo-hits-item-image">
+                  <img src="{{image}}" align="left" alt="{{name}}" />
+                </div>
+              </div>
+            `
+          }
+        }),
 
-      //   window.hitsPerPage({
-      //     container: '#persoo-hits-per-page',
-      //     items: [
-      //       { label: '8 hits per page', value: 8, default: true },
-      //       { label: '16 hits per page', value: 16 }
-      //     ]
-      //   }),
+        window.hitsPerPage({
+          container: '#persoo-hits-per-page',
+          items: [
+            { label: '8 hits per page', value: 8, default: true },
+            { label: '16 hits per page', value: 16 }
+          ]
+        }),
 
-      //   window.pagination({
-      //     container: '#persoo-pagination',
-      //     hitsPerPage: 12
-      //   })
-      // ])
+        window.pagination({
+          container: '#persoo-pagination',
+          hitsPerPage: 12
+        })
+      ])
 
       // try {
       //   searchAlgolia.start()
