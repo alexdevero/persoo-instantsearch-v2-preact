@@ -1,7 +1,8 @@
 import Cache from './cache'
 import { normalizeQuery, hashCode, throttle } from './utils'
 
-const DEBUG = true // true
+const DEBUG_SERVER = true // true
+const DEBUG_LOCAL = true // true
 
 /**
   How alolia instantsearch works:
@@ -104,7 +105,7 @@ function createMergePersooResponsesToBatchCallback(algoliaCallback, requestsCoun
 
         results[receivedExternalRequestID.pos] = receivedData
 
-        if (DEBUG) {
+        if (DEBUG_SERVER) {
           console.log('... Receiving data ' + data.externalRequestID + ' from Persoo: ' + data.items.length + ' items.')
         }
 
@@ -112,11 +113,11 @@ function createMergePersooResponsesToBatchCallback(algoliaCallback, requestsCoun
           console.error(' Requested part ' + externalRequestID.pos + ' but received part ' + receivedExternalRequestID.pos + '!')
         }
       } else if (externalRequestID.number > receivedExternalRequestID.number) {
-        if (DEBUG) {
+        if (DEBUG_SERVER) {
           console.log('... Receiving and ignoring old data ' + data.externalRequestID + ' from Persoo.')
         }
       } else {
-        if (DEBUG) {
+        if (DEBUG_SERVER) {
           console.log('... Ops, receiving future data ' + data.externalRequestID + ' from Persoo.')
         }
       }
@@ -140,8 +141,8 @@ function addCustomRuleToQuery(query, field, operator, value) {
 }
 
 function preparePersooRequestProps(options, params, indexWithSort) {
-  if (DEBUG) console.log('preparePersooRequestProps params: ', params)
-  if (DEBUG) console.log('preparePersooRequestProps options: ', options)
+  if (DEBUG_LOCAL) console.log('preparePersooRequestProps params: ', params)
+  if (DEBUG_LOCAL) console.log('preparePersooRequestProps options: ', options)
 
   var persooProps = {
     _e: 'getRecommendation',
@@ -161,7 +162,7 @@ function preparePersooRequestProps(options, params, indexWithSort) {
 
   console.log(params.facets)
 
-  if (DEBUG) console.log('persooProps: ', persooProps)
+  if (DEBUG_LOCAL) console.log('persooProps: ', persooProps)
 
   var boolQuery = { must: [] }
 
@@ -327,7 +328,7 @@ export default class PersooInstantSearchClient {
     function searchFunction(query, i) {
       // query: {"indexName":"instant_search","params":{"highlightPreTag":"__ais-highlight__","highlightPostTag":"__/ais-highlight__","facets":[],"tagFilters":""}}
 
-      if (DEBUG) console.log('query: ', query)
+      if (DEBUG_LOCAL) console.log('query: ', query)
 
       return new Promise(function(resolve, reject) {
         // var queryId = statistics.batchRequestCount
@@ -341,7 +342,7 @@ export default class PersooInstantSearchClient {
           facetFilters: query.params.facetFilters || []
         }
 
-        if (DEBUG) console.log('params: ', params)
+        if (DEBUG_LOCAL) console.log('params: ', params)
 
         var persooProps = preparePersooRequestProps(optionsSearch, params, query.indexName)
         var queryHash = hashCode(JSON.stringify(persooProps)) // without requestID
@@ -349,13 +350,13 @@ export default class PersooInstantSearchClient {
 
         persooProps.externalRequestID = externalRequestID
 
-        if (DEBUG) {
+        if (DEBUG_SERVER) {
           console.log('... persoo.send('  + JSON.stringify(persooProps) + ')')
         }
 
         var cachedResponse = cache.get(queryHash);
         if (cachedResponse) {
-          if (DEBUG) {
+          if (DEBUG_SERVER) {
             console.log('... Serving data from cache: ' + JSON.stringify(cachedResponse.items.length) + ' items.')
           }
 
@@ -381,7 +382,7 @@ export default class PersooInstantSearchClient {
     function searchFunctionBatch(queries) {
       // queries: [{"indexName":"instant_search","params":{"highlightPreTag":"__ais-highlight__","highlightPostTag":"__/ais-highlight__","facets":[],"tagFilters":""}}]
 
-      if (DEBUG) {
+      if (DEBUG_SERVER) {
         console.log('persooInstantSearchClient.search(' + JSON.stringify(queries) + ')')
       }
 
@@ -424,13 +425,13 @@ export default class PersooInstantSearchClient {
 
         persooProps.externalRequestID = externalRequestID
 
-        if (DEBUG) {
+        if (DEBUG_SERVER) {
           console.log('... persoo.send('  + JSON.stringify(persooProps) + ')')
         }
 
         var cachedResponse = cache.get(queryHash);
         if (cachedResponse) {
-          if (DEBUG) {
+          if (DEBUG_SERVER) {
             console.log('... Serving data from cache: ' + JSON.stringify(cachedResponse.items.length) + ' items.')
           }
 
