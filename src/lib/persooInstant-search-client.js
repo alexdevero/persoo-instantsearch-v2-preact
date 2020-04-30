@@ -1,7 +1,7 @@
 import Cache from './cache'
 import { normalizeQuery, hashCode, throttle } from './utils'
 
-const DEBUG = false // true
+const DEBUG = true // true
 
 /**
   How alolia instantsearch works:
@@ -32,6 +32,7 @@ function translateResponse(data, persooEventProps) {
 
     return map
   }
+
   var result = {
     hits: data.items,
     hitsPerPage: data.itemsPerPage,
@@ -139,6 +140,9 @@ function addCustomRuleToQuery(query, field, operator, value) {
 }
 
 function preparePersooRequestProps(options, params, indexWithSort) {
+  if (DEBUG) console.log('preparePersooRequestProps params: ', params)
+  if (DEBUG) console.log('preparePersooRequestProps options: ', options)
+
   var persooProps = {
     _e: 'getRecommendation',
     algorithmID: options.algorithmID,
@@ -154,6 +158,10 @@ function preparePersooRequestProps(options, params, indexWithSort) {
     // includeFields: []
     // boolQuery: {}
   }
+
+  console.log(params.facets)
+
+  if (DEBUG) console.log('persooProps: ', persooProps)
 
   var boolQuery = { must: [] }
 
@@ -314,12 +322,12 @@ export default class PersooInstantSearchClient {
     var cache = this.cache;
     var statistics = this.statistics;
 
-    var options = this.options
+    var optionsSearch = this.options
 
     function searchFunction(query, i) {
       // query: {"indexName":"instant_search","params":{"highlightPreTag":"__ais-highlight__","highlightPostTag":"__/ais-highlight__","facets":[],"tagFilters":""}}
 
-      console.log('query', query)
+      if (DEBUG) console.log('query: ', query)
 
       return new Promise(function(resolve, reject) {
         // var queryId = statistics.batchRequestCount
@@ -328,10 +336,14 @@ export default class PersooInstantSearchClient {
           maxValuesPerFacet: query.params.maxValuesPerFacet || 20,
           page: query.params.page || 0,
           query: query.params.query || '',
-          tagFilters: query.params.tagFilters || ''
+          tagFilters: query.params.tagFilters || '',
+          facets: query.params.facets || [],
+          facetFilters: query.params.facetFilters || []
         }
 
-        var persooProps = preparePersooRequestProps(options, params, query.indexName)
+        if (DEBUG) console.log('params: ', params)
+
+        var persooProps = preparePersooRequestProps(optionsSearch, params, query.indexName)
         var queryHash = hashCode(JSON.stringify(persooProps)) // without requestID
         var externalRequestID = statistics.batchRequestCount + '_' + i
 
