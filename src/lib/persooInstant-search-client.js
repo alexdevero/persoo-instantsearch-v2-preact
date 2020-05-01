@@ -22,6 +22,8 @@ const DEBUG_LOCAL = true // true
 
 function translateResponse(data, persooEventProps) {
   // receivedData = translateResponse(data, persooEventProps)
+  if (DEBUG_LOCAL) console.log('translateResponse data:' , data)
+  if (DEBUG_LOCAL) console.log('translateResponse persooEventProps:' , persooEventProps)
 
   function translateAggregationGroup(aggregationsGroup) {
     var map = {}
@@ -204,9 +206,6 @@ function preparePersooRequestProps(options, params, indexWithSort) {
   // to
   //    persooProps["price_lte"]: 1548
   var numericFilters = params.numericFilters || [];
-
-  // console.log('params.numericFilters', params)
-  console.log('params.numericFilters', params.numericFilters)
 
   for (var i = 0; i < numericFilters.length; i++) {
     var num_parts = numericFilters[i].split(/\b/)
