@@ -103,3 +103,8 @@
 .ais-Menu-searchBox > * {
   margin-bottom: .5rem;
 }
+
+/* Hide disabled button */
+.ais-Menu-showMore--disabled {
+  display: none;
+}

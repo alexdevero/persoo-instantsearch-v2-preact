@@ -110,3 +110,8 @@
 .ais-HierarchicalMenu-searchBox > * {
   margin-bottom: .5rem;
 }
+
+/* Hide disabled button */
+.ais-HierarchicalMenu-showMore--disabled {
+  display: none;
+}
