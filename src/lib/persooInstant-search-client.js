@@ -1,7 +1,7 @@
 import Cache from './cache'
 import { normalizeQuery, hashCode, throttle } from './utils'
 
-const DEBUG_SERVER = true // true
+const DEBUG_SERVER = false // true
 const DEBUG_LOCAL = true // true
 
 /**
@@ -155,14 +155,18 @@ function preparePersooRequestProps(options, params, indexWithSort) {
     index: indexWithSort.replace(/_.*$/, ''),
 
     maxValuesPerFacet: params.maxValuesPerFacet,
-    aggregations: (Array.isArray(params.facets) ? params.facets : ((params.facets && [params.facets]) || []))
+    aggregations: (Array.isArray(params.facets) ? params.facets : ((params.facets && [params.facets]) || [])),
     // includeFields: []
     // boolQuery: {}
   }
 
-  console.log(params.facets)
+  // ? INFO: When filter for boolQuery is used:
+  // For price bigger than 7218
+  // boolQuery: { "must":[{ "type":"customRule","fields": ["price", "$gte", "value", "7218"] }] }
+  // For price lower than 7218
+  // boolQuery: { "must":[{ "type":"customRule","fields": ["price", "$lte", "value", "7218"] }] }
 
-  if (DEBUG_LOCAL) console.log('persooProps: ', persooProps)
+  if (DEBUG_LOCAL) console.log('preparePersooRequestProps persooProps: ', persooProps)
 
   var boolQuery = { must: [] }
 
@@ -200,6 +204,10 @@ function preparePersooRequestProps(options, params, indexWithSort) {
   // to
   //    persooProps["price_lte"]: 1548
   var numericFilters = params.numericFilters || [];
+
+  // console.log('params.numericFilters', params)
+  console.log('params.numericFilters', params.numericFilters)
+
   for (var i = 0; i < numericFilters.length; i++) {
     var num_parts = numericFilters[i].split(/\b/)
     var num_field = num_parts[0]
@@ -328,7 +336,7 @@ export default class PersooInstantSearchClient {
     function searchFunction(query, i) {
       // query: {"indexName":"instant_search","params":{"highlightPreTag":"__ais-highlight__","highlightPostTag":"__/ais-highlight__","facets":[],"tagFilters":""}}
 
-      if (DEBUG_LOCAL) console.log('query: ', query)
+      if (DEBUG_LOCAL) console.log('searchFunction query: ', query)
 
       return new Promise(function(resolve, reject) {
         // var queryId = statistics.batchRequestCount
@@ -339,10 +347,12 @@ export default class PersooInstantSearchClient {
           query: query.params.query || '',
           tagFilters: query.params.tagFilters || '',
           facets: query.params.facets || [],
-          facetFilters: query.params.facetFilters || []
+          facetFilters: query.params.facetFilters || [],
+          // boolQuery: query.params.boolQuery || {},
+          numericFilters: query.params.numericFilters || []
         }
 
-        if (DEBUG_LOCAL) console.log('params: ', params)
+        if (DEBUG_LOCAL) console.log('searchFunction params: ', params)
 
         var persooProps = preparePersooRequestProps(optionsSearch, params, query.indexName)
         var queryHash = hashCode(JSON.stringify(persooProps)) // without requestID
@@ -446,12 +456,27 @@ export default class PersooInstantSearchClient {
       }
     }
 
+    // TODO: implement searchForFacetValues for searchable refinementList
+    function searchForFacetValues(queries) {
+      // https://github.com/algolia/algoliasearch-client-javascript/blob/e6dec843932bdfaac13ffa1e0a11964975499078/packages/client-search/src/methods/client/multipleSearchForFacetValues.ts
+
+      return Promise.all(
+        queries.map(function(query) {
+          console.log(query)
+          const { facetName, facetQuery, ...params } = query.params
+
+        })
+      )
+    }
+
     // throttle requests for people who type extremly fast
     // var searchFunctionBatchThrottled = throttle(searchFunctionBatch, this.options.requestThrottlingInMs, false)
 
     return {
       addAlgoliaAgent: function() {},
-      search: searchFunctionBatch // searchFunctionBatchThrottled
+      search: searchFunctionBatch, // searchFunctionBatchThrottled
+      // TODO: implement searchForFacetValues for searchable refinementList
+      // searchForFacetValues: searchForFacetValues
     }
   }
 }
