@@ -563,17 +563,6 @@
           ]
         }),
 
-        window.algoliaWidgets.pagination({
-          container: '#algolia-pagination',
-          hitsPerPage: 12
-        }),
-
-        window.algoliaWidgets.refinementList({
-          container: '#algolia-menu',
-          attribute: 'brand',
-          searchable: true
-        }),
-
         window.algoliaWidgets.numericMenu({
           // Docs: https://www.algolia.com/doc/api-reference/widgets/numeric-menu/js/
           container: '#algolia-numeric-menu',
@@ -584,6 +573,11 @@
             { label: 'Mezi $500 - $1000', start: 500, end: 1000 },
             { label: 'Více než $1000', start: 1000 }
           ]
+        }),
+
+        window.algoliaWidgets.pagination({
+          container: '#algolia-pagination',
+          hitsPerPage: 12
         }),
 
         window.algoliaWidgets.rangeSlider({
@@ -600,9 +594,44 @@
           attribute: 'price'
         }),
 
+        window.algoliaWidgets.ratingMenu({
+          // Docs: https://www.algolia.com/doc/api-reference/widgets/rating-menu/js/
+          container: '#algolia-rating-menu',
+          attribute: 'rating',
+          max: 5,
+          cssClasses: {
+            root: 'persoo-rating-menu-root',
+            noRefinementRoot: 'persoo-rating-menu-no-refinement-root',
+            list: 'persoo-rating-menu-list',
+            item: 'persoo-rating-menu-item',
+            selectedItem: 'persoo-rating-menu-selected-item',
+            disabledItem: 'persoo-rating-menu-disabled-item',
+            starIcon: 'persoo-rating-menu-starIcon',
+            fullStarIcon: 'persoo-rating-menu-full-star-icon',
+            emptyStarIcon: 'persoo-rating-menu-empty-star-icon',
+            label: 'persoo-rating-menu-label',
+            count: 'persoo-rating-menu-count'
+          }
+        }),
+
+        window.algoliaWidgets.refinementList({
+          container: '#algolia-menu',
+          attribute: 'brand',
+          searchable: true
+        }),
+
         window.algoliaWidgets.searchBox({
           // Docs: https://www.algolia.com/doc/api-reference/widgets/search-box/js/
           container: '#algolia-searchbox'
+        }),
+
+        window.algoliaWidgets.stats({
+          // Docs: https://www.algolia.com/doc/api-reference/widgets/stats/js/
+          container: '#persoo-stats',
+          cssClasses: {
+            root: 'persoo-stats-root',
+            text: ['persoo-stats-text', 'persoo-stats-text--subclass']
+          }
         }),
 
         window.algoliaWidgets.toggleRefinement({
@@ -617,15 +646,6 @@
           },
           templates: {
             labelText: 'Doprava zdarma'
-          }
-        }),
-
-        window.algoliaWidgets.stats({
-          // Docs: https://www.algolia.com/doc/api-reference/widgets/stats/js/
-          container: '#persoo-stats',
-          cssClasses: {
-            root: 'persoo-stats-root',
-            text: ['persoo-stats-text', 'persoo-stats-text--subclass']
           }
         })
       ])
