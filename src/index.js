@@ -127,15 +127,17 @@ function createInstantSearchConnector(options) {
   return instantSearchInstance
 }
 
-window.persooInstantSearch = createInstantSearchConnector
-window.persooInstantSearch.EJS = getRenderFunction
-window.persooInstantSearch.throttle = throttle
-window.persooInstantSearch.widgets = instantSearchWidgets
+if (typeof window !== 'undefined') {
+  window.persooInstantSearch = createInstantSearchConnector
+  window.persooInstantSearch.EJS = getRenderFunction
+  window.persooInstantSearch.throttle = throttle
+  window.persooInstantSearch.widgets = instantSearchWidgets
 
 
-window.algoliasearch = algoliasearch
-window.instantsearch = instantsearch
-window.algoliaWidgets = instantSearchWidgets
+  window.algoliasearch = algoliasearch
+  window.instantsearch = instantsearch
+  window.algoliaWidgets = instantSearchWidgets
+}
 // window.hitsPerPage = hitsPerPage
 // window.pagination = pagination
 
