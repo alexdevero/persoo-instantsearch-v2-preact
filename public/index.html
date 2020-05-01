@@ -158,106 +158,104 @@
       </div>
     </div>
 
-    <h2>Algolia demo:</h2>
+    <div style="/* display: none; */">
+      <h2>Algolia demo:</h2>
 
-    <div class="container">
-      <div class="left-panel">
-        <div id="algolia-filters-toggle">
-          Filtry
-        </div>
-
-        <h3>Categories</h3>
-
-        <div id="algolia-hierarchical-menu"></div>
-
-        <!-- <h3>Refinement list with panel</h3>
-
-        <div id="refinement-list-with-panel"></div> -->
-
-        <h3>Refinement list</h3>
-
-        <div id="algolia-refinement-list"></div>
-
-        <h3>Menu</h3>
-
-        <div id="algolia-menu"></div>
-
-        <!-- <h3>Menu select</h3>
-
-        <div id="algolia-menu-select"></div> -->
-
-        <!-- <h3>Menu select custom</h3>
-
-        <div id="algolia-menu-select-custom"></div> -->
-
-        <h3>Toggle refinement</h3>
-
-        <div id="algolia-toggle-refinement"></div>
-
-        <h3>Numeric menu</h3>
-
-        <div id="algolia-numeric-menu"></div>
-
-        <h3>Range slider</h3>
-
-        <div id="algolia-range-slider"></div>
-
-        <h3>Range input</h3>
-
-        <div id="algolia-range-input"></div>
-
-        <h3>Rating menu</h3>
-
-        <div id="algolia-rating-menu"></div>
-      </div>
-
-      <div class="right-panel">
-        <div class="right-panel__results">
-          <div id="algolia-searchbox"></div>
-
-          <div class="search-meta-filters">
-            <div>
-              <h5>Stats</h5>
-              <div id="algolia-stats"></div>
-            </div>
-
-            <div>
-              <h5>Hits per page</h5>
-              <div id="algolia-hits-per-page"></div>
-            </div>
-
-            <div>
-              <h5>Custom hits per page</h5>
-              <div id="algolia-hits-per-page-custom"></div>
-            </div>
-
-            <div>
-              <h5>Sort by</h5>
-              <div id="algolia-sort-by"></div>
-            </div>
-
-            <div>
-              <h5>Custom sort by</h5>
-              <div id="algolia-sort-by-custom"></div>
-            </div>
+      <div class="container">
+        <div class="left-panel">
+          <div id="algolia-filters-toggle">
+            Filtry
           </div>
 
-          <div class="search-meta-filters">
-            <div>
-              <h5>Clear refinements</h5>
-              <div id="algolia-clear-refinements"></div>
-            </div>
+          <!-- <h3>Categories</h3>
 
-            <div>
-              <h5>Current refinements</h5>
-              <div id="algolia-current-refinements"></div>
-            </div>
-          </div>
+          <div id="algolia-hierarchical-menu"></div> -->
 
-          <div id="algolia-hits"></div>
+          <!-- <h3>Refinement list with panel</h3>
+
+          <div id="refinement-list-with-panel"></div> -->
+
+          <h3>Refinement list</h3>
+
+          <div id="algolia-refinement-list"></div>
+
+          <!-- <h3>Menu select</h3>
+
+          <div id="algolia-menu-select"></div> -->
+
+          <!-- <h3>Menu select custom</h3>
+
+          <div id="algolia-menu-select-custom"></div> -->
+
+          <h3>Toggle refinement</h3>
+
+          <div id="algolia-toggle-refinement"></div>
+
+          <!-- <h3>Numeric menu</h3>
+
+          <div id="algolia-numeric-menu"></div> -->
+
+          <!-- <h3>Range slider</h3>
+
+          <div id="algolia-range-slider"></div> -->
+
+          <!-- <h3>Range input</h3>
+
+          <div id="algolia-range-input"></div> -->
+
+          <h3>Rating menu</h3>
+
+          <div id="algolia-rating-menu"></div>
         </div>
 
-        <div id="algolia-pagination"></div>
+        <div class="right-panel">
+          <div class="right-panel__results">
+            <div id="algolia-searchbox"></div>
+
+            <div class="search-meta-filters">
+              <!-- <div>
+                <h5>Stats</h5>
+                <div id="algolia-stats"></div>
+              </div> -->
+
+              <!-- <div>
+                <h5>Hits per page</h5>
+                <div id="algolia-hits-per-page"></div>
+              </div>
+
+              <div>
+                <h5>Custom hits per page</h5>
+                <div id="algolia-hits-per-page-custom"></div>
+              </div> -->
+
+              <!-- <div>
+                <h5>Sort by</h5>
+                <div id="algolia-sort-by"></div>
+              </div>
+
+              <div>
+                <h5>Custom sort by</h5>
+                <div id="algolia-sort-by-custom"></div>
+              </div> -->
+            </div>
+
+            <!-- <div class="search-meta-filters">
+              <div>
+                <h5>Clear refinements</h5>
+                <div id="algolia-clear-refinements"></div>
+              </div>
+
+              <div>
+                <h5>Current refinements</h5>
+                <div id="algolia-current-refinements"></div>
+              </div>
+            </div> -->
+
+            <div id="algolia-hits"></div>
+          </div>
+
+          <div id="algolia-pagination"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -333,6 +331,8 @@
                     Index of item: {{ __hitIndex }}:
                     {{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}
                   </h5>
+
+                  <p>Rating: {{reviewStars}}</p>
 
                   <h4>{{title}}</h4>
                 </div>
@@ -455,30 +455,35 @@
         // //   attribute: 'brand'
         // // }),
 
-        // persooInstantSearch.widgets.ratingMenu({
-        //   // Docs: https://www.algolia.com/doc/api-reference/widgets/rating-menu/js/
-        //   container: '#persoo-rating-menu',
-        //   attribute: 'rating',
-        //   max: 5,
-        //   cssClasses: {
-        //     root: 'persoo-rating-menu-root',
-        //     noRefinementRoot: 'persoo-rating-menu-no-refinement-root',
-        //     list: 'persoo-rating-menu-list',
-        //     item: 'persoo-rating-menu-item',
-        //     selectedItem: 'persoo-rating-menu-selected-item',
-        //     disabledItem: 'persoo-rating-menu-disabled-item',
-        //     starIcon: 'persoo-rating-menu-starIcon',
-        //     fullStarIcon: 'persoo-rating-menu-full-star-icon',
-        //     emptyStarIcon: 'persoo-rating-menu-empty-star-icon',
-        //     label: 'persoo-rating-menu-label',
-        //     count: 'persoo-rating-menu-count'
-        //   }
-        // }),
+        // ! TODO: Implement ratingMenu component
+        persooInstantSearch.widgets.ratingMenu({
+          // Docs: https://www.algolia.com/doc/api-reference/widgets/rating-menu/js/
+          container: '#persoo-rating-menu',
+          attribute: 'reviewStars',
+          max: 5,
+          cssClasses: {
+            root: 'persoo-rating-menu-root',
+            noRefinementRoot: 'persoo-rating-menu-no-refinement-root',
+            list: 'persoo-rating-menu-list',
+            item: 'persoo-rating-menu-item',
+            selectedItem: 'persoo-rating-menu-selected-item',
+            disabledItem: 'persoo-rating-menu-disabled-item',
+            starIcon: 'persoo-rating-menu-starIcon',
+            fullStarIcon: 'persoo-rating-menu-full-star-icon',
+            emptyStarIcon: 'persoo-rating-menu-empty-star-icon',
+            label: 'persoo-rating-menu-label',
+            count: 'persoo-rating-menu-count'
+          }
+        }),
 
         persooInstantSearch.widgets.rangeInput({
           // Docs: https://www.algolia.com/doc/api-reference/widgets/range-input/js/
           container: '#persoo-range-input',
-          attribute: 'price'
+          attribute: 'price',
+          templates: {
+            separatorText: 'do',
+            submitText: 'Zobrazit'
+          }
         }),
 
         persooInstantSearch.widgets.searchBox({
@@ -506,18 +511,15 @@
         }),
 
         // persooInstantSearch.widgets.toggleRefinement({
-          // Docs: https://www.algolia.com/doc/api-reference/widgets/toggle-refinement/js/
-          // container: '#persoo-toggle-refinement',
-          // attribute: 'Brand',
-          // cssClasses: {
-          //   root: 'persoo-toggle-refinment-root',
-          //   label: 'persoo-toggle-refinment-label',
-          //   checkbox: 'persoo-toggle-refinment-checkbox',
-          //   labelText: 'persoo-toggle-refinment-labelText'
-          // },
-          // templates: {
-          //   labelText: 'Doprava zdarma'
-          // }
+        //   // Docs: https://www.algolia.com/doc/api-reference/widgets/toggle-refinement/js/
+        //   container: '#persoo-toggle-refinement',
+        //   attribute: 'gender',
+        //   cssClasses: {
+        //     root: 'persoo-toggle-refinment-root',
+        //     label: 'persoo-toggle-refinment-label',
+        //     checkbox: 'persoo-toggle-refinment-checkbox',
+        //     labelText: 'persoo-toggle-refinment-labelText'
+        //   }
         // })
       ])
 
@@ -555,44 +557,44 @@
           }
         }),
 
-        window.algoliaWidgets.hitsPerPage({
-          container: '#algolia-hits-per-page',
-          items: [
-            { label: '8 hits per page', value: 8, default: true },
-            { label: '16 hits per page', value: 16 }
-          ]
-        }),
+        // window.algoliaWidgets.hitsPerPage({
+        //   container: '#algolia-hits-per-page',
+        //   items: [
+        //     { label: '8 hits per page', value: 8, default: true },
+        //     { label: '16 hits per page', value: 16 }
+        //   ]
+        // }),
 
-        window.algoliaWidgets.numericMenu({
-          // Docs: https://www.algolia.com/doc/api-reference/widgets/numeric-menu/js/
-          container: '#algolia-numeric-menu',
-          attribute: 'price',
-          items: [
-            { label: 'Vše' },
-            { label: 'Méně než $500', end: 500 },
-            { label: 'Mezi $500 - $1000', start: 500, end: 1000 },
-            { label: 'Více než $1000', start: 1000 }
-          ]
-        }),
+        // window.algoliaWidgets.numericMenu({
+        //   // Docs: https://www.algolia.com/doc/api-reference/widgets/numeric-menu/js/
+        //   container: '#algolia-numeric-menu',
+        //   attribute: 'price',
+        //   items: [
+        //     { label: 'Vše' },
+        //     { label: 'Méně než $500', end: 500 },
+        //     { label: 'Mezi $500 - $1000', start: 500, end: 1000 },
+        //     { label: 'Více než $1000', start: 1000 }
+        //   ]
+        // }),
 
-        window.algoliaWidgets.pagination({
-          container: '#algolia-pagination',
-          hitsPerPage: 12
-        }),
+        // window.algoliaWidgets.pagination({
+        //   container: '#algolia-pagination',
+        //   hitsPerPage: 12
+        // }),
 
-        window.algoliaWidgets.rangeSlider({
-          // Docs: https://www.algolia.com/doc/api-reference/widgets/range-slider/js/
-          container: '#algolia-range-slider',
-          attribute: 'price',
-          tooltips: true,
-          pips: false
-        }),
+        // window.algoliaWidgets.rangeSlider({
+        //   // Docs: https://www.algolia.com/doc/api-reference/widgets/range-slider/js/
+        //   container: '#algolia-range-slider',
+        //   attribute: 'price',
+        //   tooltips: true,
+        //   pips: false
+        // }),
 
-        window.algoliaWidgets.rangeInput({
-          // Docs: https://www.algolia.com/doc/api-reference/widgets/range-input/js/
-          container: '#algolia-range-input',
-          attribute: 'price'
-        }),
+        // window.algoliaWidgets.rangeInput({
+        //   // Docs: https://www.algolia.com/doc/api-reference/widgets/range-input/js/
+        //   container: '#algolia-range-input',
+        //   attribute: 'price'
+        // }),
 
         window.algoliaWidgets.ratingMenu({
           // Docs: https://www.algolia.com/doc/api-reference/widgets/rating-menu/js/
@@ -615,7 +617,7 @@
         }),
 
         window.algoliaWidgets.refinementList({
-          container: '#algolia-menu',
+          container: '#algolia-refinement-list',
           attribute: 'brand',
           searchable: true
         }),
@@ -625,14 +627,14 @@
           container: '#algolia-searchbox'
         }),
 
-        window.algoliaWidgets.stats({
-          // Docs: https://www.algolia.com/doc/api-reference/widgets/stats/js/
-          container: '#persoo-stats',
-          cssClasses: {
-            root: 'persoo-stats-root',
-            text: ['persoo-stats-text', 'persoo-stats-text--subclass']
-          }
-        }),
+        // window.algoliaWidgets.stats({
+        //   // Docs: https://www.algolia.com/doc/api-reference/widgets/stats/js/
+        //   container: '#persoo-stats',
+        //   cssClasses: {
+        //     root: 'persoo-stats-root',
+        //     text: ['persoo-stats-text', 'persoo-stats-text--subclass']
+        //   }
+        // }),
 
         window.algoliaWidgets.toggleRefinement({
           // Docs: https://www.algolia.com/doc/api-reference/widgets/toggle-refinement/js/
