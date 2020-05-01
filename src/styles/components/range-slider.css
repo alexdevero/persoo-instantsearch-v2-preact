@@ -54,8 +54,18 @@
   line-height: 1.5rem;
 }
 
+.ais-RangeInput-label::after {
+  content: 'Kč';
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.ais-RangeInput-label + .ais-RangeInput-submit {
+  margin-left: 10px;
+}
+
 .ais-RangeInput-separator {
-  margin: 0 .3rem;
+  margin: 0 8px;
 }
 
 .ais-RangeInput-submit {

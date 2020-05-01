@@ -45,3 +45,9 @@
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
 }
+
+/* Temporary hack for adding currency to handles */
+.rheostat-tooltip::after {
+  content: 'Kč';
+  margin-left: 3px;
+}
