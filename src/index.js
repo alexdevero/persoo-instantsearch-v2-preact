@@ -1,7 +1,7 @@
 // https://www.algolia.com/doc/api-reference/widgets/js/
 
 // import { Component } from 'preact'
-// import algoliasearch from 'algoliasearch/lite'
+import algoliasearch from 'algoliasearch/lite'
 import instantsearch from 'instantsearch.js'
 
 // Import Promise polyfill
@@ -133,9 +133,9 @@ window.persooInstantSearch.throttle = throttle
 window.persooInstantSearch.widgets = instantSearchWidgets
 
 
-// window.algoliasearch = algoliasearch
-// window.instantsearch = instantsearch
-// window.hits = hits
+window.algoliasearch = algoliasearch
+window.instantsearch = instantsearch
+window.algoliaWidgets = instantSearchWidgets
 // window.hitsPerPage = hitsPerPage
 // window.pagination = pagination
 
