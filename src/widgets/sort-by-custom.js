@@ -9,12 +9,13 @@ export const renderSortByCustom = (renderOptions, isFirstRender) => {
     //   refine(event.target.value)
     // })
 
-    widgetParams.container.appendChild(sortByCustom)
+    // * NOTE: Use this when container attribute contains selector ('#foo')
+    document.querySelector(widgetParams.container).appendChild(sortByCustom)
   }
 
   let currentSelectedOption = options.filter(option => option.value === currentRefinement)[0].label
 
-  const sortByCustom = widgetParams.container.querySelector('div')
+  const sortByCustom = document.querySelector(widgetParams.container)
 
   // if (hasNoResults) sortByCustom.classList.add('persoo-custom-select--disabled')
 
@@ -47,7 +48,7 @@ export const renderSortByCustom = (renderOptions, isFirstRender) => {
 
   sortByCustom.querySelectorAll('.persoo-custom-select-option').forEach(element => {
     element.addEventListener('click', event => {
-      refine(event.target.dataset.persooOptionValue)
+      refine(event.target.dataset.persooItemValue)
 
       currentSelectedOption = options.filter(option => option.value === currentRefinement)[0].label
     })
