@@ -127,11 +127,20 @@ function createInstantSearchConnector(options) {
   return instantSearchInstance
 }
 
+// Wire custom widgets
+const hitsPerPageCustom = connectHitsPerPage(renderHitsPerPageCustom)
+const sortByCustom = connectSortBy(renderSortByCustom)
+const menuSelectCustom = connectMenu(renderMenuSelectCustom)
+
+// Export everything
 if (typeof window !== 'undefined') {
   window.persooInstantSearch = createInstantSearchConnector
   window.persooInstantSearch.EJS = getRenderFunction
   window.persooInstantSearch.throttle = throttle
   window.persooInstantSearch.widgets = instantSearchWidgets
+  window.persooInstantSearch.widgets.hitsPerPageCustom = hitsPerPageCustom
+  window.persooInstantSearch.widgets.sortByCustom = sortByCustom
+  window.persooInstantSearch.widgets.menuSelectCustom = menuSelectCustom
 
 
   window.algoliasearch = algoliasearch
