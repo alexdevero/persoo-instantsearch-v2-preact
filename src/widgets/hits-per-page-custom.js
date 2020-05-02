@@ -3,20 +3,21 @@ export const renderHitsPerPageCustom = (renderOptions, isFirstRender) => {
   const { items, hasNoResults, refine, widgetParams } = renderOptions
 
   if (isFirstRender) {
-    const hitsPerPageCustom = document.createElement('div')
+    const hitsPerPageCustomFirst = document.createElement('div')
 
     // select.addEventListener('change', event => {
     //   refine(event.target.value)
     // })
 
-    widgetParams.container.appendChild(hitsPerPageCustom)
+    // * NOTE: Use this when container attribute contains selector ('#foo')
+    document.querySelector(widgetParams.container).appendChild(hitsPerPageCustomFirst) // container.appendChild(hitsPerPageCustomFirst)
   }
 
   let currentRefinementLabel = items.filter(item => item.isRefined)[0].label
 
-  const hitsPerPageCustom = widgetParams.container.querySelector('div')
+  const hitsPerPageCustom = document.querySelector(widgetParams.container) // container.querySelector('div')
 
-  // if (hasNoResults) hitsPerPageCustom.classList.add('persoo-custom-select--disabled')
+  if (hasNoResults) hitsPerPageCustom.classList.add('persoo-custom-select--disabled')
 
   hitsPerPageCustom.classList.add('persoo-custom-select')
 
