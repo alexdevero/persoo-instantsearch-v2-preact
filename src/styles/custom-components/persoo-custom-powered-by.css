@@ -1,0 +1,24 @@
+/* Persoo custom custom powered by */
+.persoo-powered-by-custom-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  font-family: arial, sans-serif;
+  font-size: 11px;
+  font-style: italic;
+  color: #666;
+  line-height: 2;
+  text-decoration: none;
+}
+
+.persoo-powered-by-custom-link:hover {
+  color: #111;
+}
+
+.persoo-powered-by-custom-link svg {
+  margin-left: 2px;
+  width: 51px;
+  height: auto;
+}

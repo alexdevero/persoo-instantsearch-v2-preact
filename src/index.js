@@ -35,12 +35,13 @@ import 'promise-polyfill/src/polyfill'
 // } from 'instantsearch.js/es/widgets'
 
 // Import Algolia connectors
-import { connectHitsPerPage, connectSortBy, connectMenu } from 'instantsearch.js/es/connectors'
+import { connectHitsPerPage, connectSortBy, connectMenu, connectPoweredBy } from 'instantsearch.js/es/connectors'
 
 // Import custom widgets
 import { renderHitsPerPageCustom } from './widgets/hits-per-page-custom'
 import { renderSortByCustom } from './widgets/sort-by-custom'
 import { renderMenuSelectCustom } from './widgets/menu-select-custom'
+import { renderPoweredByCustom } from './widgets/powered-by-custom'
 
 // Import Algolia styles
 import './styles/algolia-reset.css'
@@ -76,6 +77,7 @@ import './styles/components/voice-search.css'
 
 // Import custom components' styles
 import './styles/custom-components/persoo-custom-select.css'
+import './styles/custom-components/persoo-custom-powered-by.css'
 
 // Import temporary styles for cards
 import './styles/temporary-card-styles.css'
@@ -141,6 +143,7 @@ function createInstantSearchConnector(options) {
 const hitsPerPageCustom = connectHitsPerPage(renderHitsPerPageCustom)
 const sortByCustom = connectSortBy(renderSortByCustom)
 const menuSelectCustom = connectMenu(renderMenuSelectCustom)
+const poweredByCustom = connectPoweredBy(renderPoweredByCustom)
 
 // Export everything
 if (typeof window !== 'undefined') {
@@ -151,6 +154,7 @@ if (typeof window !== 'undefined') {
   window.persooInstantSearch.widgets.hitsPerPageCustom = hitsPerPageCustom
   window.persooInstantSearch.widgets.sortByCustom = sortByCustom
   window.persooInstantSearch.widgets.menuSelectCustom = menuSelectCustom
+  window.persooInstantSearch.widgets.poweredByCustom = poweredByCustom
 
 
   window.algoliasearch = algoliasearch

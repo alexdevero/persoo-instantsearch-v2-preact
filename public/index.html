@@ -112,6 +112,8 @@
         <div class="right-panel__results">
           <div id="persoo-searchbox"></div>
 
+          <div id="persoo-powered-by"></div>
+
           <div class="search-meta-filters">
             <div>
               <h5>Stats</h5>
@@ -486,6 +488,10 @@
             separatorText: 'do',
             submitText: 'Zobrazit'
           }
+        }),
+
+        persooInstantSearch.widgets.poweredByCustom({
+          container: '#persoo-powered-by'
         }),
 
         persooInstantSearch.widgets.searchBox({
