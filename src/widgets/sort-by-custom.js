@@ -50,7 +50,7 @@ export const renderSortByCustom = (renderOptions, isFirstRender) => {
     element.addEventListener('click', event => {
       refine(event.target.dataset.persooItemValue)
 
-      currentSelectedOption = options.filter(option => option.value === currentRefinement)[0].label
+      // currentSelectedOption = options.filter(option => option.value === currentRefinement)[0].label
     })
   })
 }

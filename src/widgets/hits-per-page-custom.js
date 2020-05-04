@@ -48,7 +48,7 @@ export const renderHitsPerPageCustom = (renderOptions, isFirstRender) => {
     element.addEventListener('click', event => {
       refine(event.target.dataset.persooOptionValue)
 
-      currentRefinementLabel = items.filter(item => item.isRefined)[0].label
+      // currentRefinementLabel = items.filter(item => item.isRefined)[0].label
     })
   })
 }
