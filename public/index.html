@@ -319,34 +319,36 @@
           },
           templates: {
             empty: 'Nebyly nalezeny žádné výsledky pro <q>{{ query }}</q>.',
-            item: `
-              <div class="persoo-hits-item">
-                <div class="persoo-hits-item-image">
-                  <img src="{{imageLink}}" align="{{imageLink}}" alt="{{title}}" />
-                </div>
+            // item: `
+            //   <div class="persoo-hits-item">
+            //     <div class="persoo-hits-item-image">
+            //       <img src="{{imageLink}}" align="{{imageLink}}" alt="{{title}}" />
+            //     </div>
 
-                <div class="persoo-hits-item-name">
-                  {{#helpers.highlight}}{ "attribute": "title", "highlightedTagName": "mark" }{{/helpers.highlight}}
-                  <h5>
-                    Index of item: {{ __hitIndex }}:
-                    {{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}
-                  </h5>
+            //     <div class="persoo-hits-item-name">
+            //       {{#helpers.highlight}}{ "attribute": "title", "highlightedTagName": "mark" }{{/helpers.highlight}}
+            //       <h5>
+            //         Index of item: {{ __hitIndex }}:
+            //         {{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}
+            //       </h5>
 
-                  <p>Rating: {{reviewStars}}</p>
+            //       <p>Rating: {{reviewStars}}</p>
 
-                  <h4>{{title}}</h4>
-                </div>
+            //       <h4>{{title}}</h4>
+            //     </div>
 
-                <div class="persoo-hits-item-description">
-                  {{#helpers.highlight}}{ "attribute": "description", "highlightedTagName": "mark" }{{/helpers.highlight}}
-                  {{description}}
-                </div>
+            //     <div class="persoo-hits-item-description">
+            //       {{#helpers.highlight}}{ "attribute": "description", "highlightedTagName": "mark" }{{/helpers.highlight}}
+            //       {{description}}
+            //     </div>
 
-                <div class="persoo-hits-item-price">
-                  {{price}} Kč
-                </div>
-              </div>
-            `
+            //     <div class="persoo-hits-item-price">
+            //       {{price}} Kč
+            //     </div>
+            //   </div>
+            // `
+            // NOTE: Version for IE
+            item: "<div class=\"persoo-hits-item\"><div class=\"persoo-hits-item-image\"><img src=\"{{imageLink}}\" align=\"{{imageLink}}\" alt=\"{{title}}\" /></div><div class=\"persoo-hits-item-name\">{{#helpers.highlight}}{ \"attribute\": \"title\", \"highlightedTagName\": \"mark\" }{{/helpers.highlight}}<h5>Index of item: {{ __hitIndex }}:{{#helpers.highlight}}{ \"attribute\": \"title\" }{{/helpers.highlight}}</h5><p>Rating: {{reviewStars}}</p><h4>{{title}}</h4><div><div class=\"persoo-hits-item-description\">{{#helpers.highlight}}{ \"attribute\": \"description\", \"highlightedTagName\": \"mark\" }{{/helpers.highlight}}{{description}}</div><div class=\"persoo-hits-item-price\">{{price}} Kč</div></div>"
           }
         }),
 
@@ -571,132 +573,134 @@
 
 
       // Demo settings for Algolia prototype
-      const searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76')
+      // const searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76')
 
-      const searchAlgolia = instantsearch({
-        indexName: 'instant_search',
-        searchClient
-      })
+      // const searchAlgolia = instantsearch({
+      //   indexName: 'instant_search',
+      //   searchClient
+      // })
 
-      searchAlgolia.addWidgets([
-        window.algoliaWidgets.hits({
-          container: '#algolia-hits',
-          cssClasses: {
-            root: 'persoo-hits',
-            list: ['persoo-hits-list', 'persoo-hits-list--subclass']
-          },
-          templates: {
-            empty: 'No results for <q>{{ query }}</q>',
-            item: `
-              <div class="persoo-hits-item">
-                <div class="persoo-hits-item-image">
-                  <img src="{{image}}" align="left" alt="{{name}}" />
-                </div>
+      // searchAlgolia.addWidgets([
+      //   window.algoliaWidgets.hits({
+      //     container: '#algolia-hits',
+      //     cssClasses: {
+      //       root: 'persoo-hits',
+      //       list: ['persoo-hits-list', 'persoo-hits-list--subclass']
+      //     },
+      //     templates: {
+      //       empty: 'No results for <q>{{ query }}</q>',
+      //       // item: `
+      //       //   <div class="persoo-hits-item">
+      //       //     <div class="persoo-hits-item-image">
+      //       //       <img src="{{image}}" align="left" alt="{{name}}" />
+      //       //     </div>
 
-                <div>
-                  {{#helpers.highlight}}{ "attribute": "name" }{{/helpers.highlight}}
-                </div>
+      //       //     <div>
+      //       //       {{#helpers.highlight}}{ "attribute": "name" }{{/helpers.highlight}}
+      //       //     </div>
 
-                <div>{{price}}</div>
-              </>
-            `
-          }
-        }),
+      //       //     <div>{{price}}</div>
+      //       //   </>
+      //       // `
+      //       // NOTE: Version for IE
+      //       item: "<div class=\"persoo-hits-item\"><div class=\"persoo-hits-item-image\"><img src=\"{{image}}\" align=\"left\" alt=\"{{name}}\" /></div><div>{{#helpers.highlight}}{ \"attribute\": \"name\" }{{/helpers.highlight}}</div><div>{{price}}</div></>"
+      //     }
+      //   }),
 
-        // window.algoliaWidgets.hitsPerPage({
-        //   container: '#algolia-hits-per-page',
-        //   items: [
-        //     { label: '8 hits per page', value: 8, default: true },
-        //     { label: '16 hits per page', value: 16 }
-        //   ]
-        // }),
+      //   // window.algoliaWidgets.hitsPerPage({
+      //   //   container: '#algolia-hits-per-page',
+      //   //   items: [
+      //   //     { label: '8 hits per page', value: 8, default: true },
+      //   //     { label: '16 hits per page', value: 16 }
+      //   //   ]
+      //   // }),
 
-        // window.algoliaWidgets.numericMenu({
-        //   // Docs: https://www.algolia.com/doc/api-reference/widgets/numeric-menu/js/
-        //   container: '#algolia-numeric-menu',
-        //   attribute: 'price',
-        //   items: [
-        //     { label: 'Vše' },
-        //     { label: 'Méně než $500', end: 500 },
-        //     { label: 'Mezi $500 - $1000', start: 500, end: 1000 },
-        //     { label: 'Více než $1000', start: 1000 }
-        //   ]
-        // }),
+      //   // window.algoliaWidgets.numericMenu({
+      //   //   // Docs: https://www.algolia.com/doc/api-reference/widgets/numeric-menu/js/
+      //   //   container: '#algolia-numeric-menu',
+      //   //   attribute: 'price',
+      //   //   items: [
+      //   //     { label: 'Vše' },
+      //   //     { label: 'Méně než $500', end: 500 },
+      //   //     { label: 'Mezi $500 - $1000', start: 500, end: 1000 },
+      //   //     { label: 'Více než $1000', start: 1000 }
+      //   //   ]
+      //   // }),
 
-        // window.algoliaWidgets.pagination({
-        //   container: '#algolia-pagination',
-        //   hitsPerPage: 12
-        // }),
+      //   // window.algoliaWidgets.pagination({
+      //   //   container: '#algolia-pagination',
+      //   //   hitsPerPage: 12
+      //   // }),
 
-        // window.algoliaWidgets.rangeSlider({
-        //   // Docs: https://www.algolia.com/doc/api-reference/widgets/range-slider/js/
-        //   container: '#algolia-range-slider',
-        //   attribute: 'price',
-        //   tooltips: true,
-        //   pips: false
-        // }),
+      //   // window.algoliaWidgets.rangeSlider({
+      //   //   // Docs: https://www.algolia.com/doc/api-reference/widgets/range-slider/js/
+      //   //   container: '#algolia-range-slider',
+      //   //   attribute: 'price',
+      //   //   tooltips: true,
+      //   //   pips: false
+      //   // }),
 
-        // window.algoliaWidgets.rangeInput({
-        //   // Docs: https://www.algolia.com/doc/api-reference/widgets/range-input/js/
-        //   container: '#algolia-range-input',
-        //   attribute: 'price'
-        // }),
+      //   // window.algoliaWidgets.rangeInput({
+      //   //   // Docs: https://www.algolia.com/doc/api-reference/widgets/range-input/js/
+      //   //   container: '#algolia-range-input',
+      //   //   attribute: 'price'
+      //   // }),
 
-        window.algoliaWidgets.ratingMenu({
-          // Docs: https://www.algolia.com/doc/api-reference/widgets/rating-menu/js/
-          container: '#algolia-rating-menu',
-          attribute: 'rating',
-          max: 5,
-          cssClasses: {
-            root: 'persoo-rating-menu-root',
-            noRefinementRoot: 'persoo-rating-menu-no-refinement-root',
-            list: 'persoo-rating-menu-list',
-            item: 'persoo-rating-menu-item',
-            selectedItem: 'persoo-rating-menu-selected-item',
-            disabledItem: 'persoo-rating-menu-disabled-item',
-            starIcon: 'persoo-rating-menu-starIcon',
-            fullStarIcon: 'persoo-rating-menu-full-star-icon',
-            emptyStarIcon: 'persoo-rating-menu-empty-star-icon',
-            label: 'persoo-rating-menu-label',
-            count: 'persoo-rating-menu-count'
-          }
-        }),
+      //   window.algoliaWidgets.ratingMenu({
+      //     // Docs: https://www.algolia.com/doc/api-reference/widgets/rating-menu/js/
+      //     container: '#algolia-rating-menu',
+      //     attribute: 'rating',
+      //     max: 5,
+      //     cssClasses: {
+      //       root: 'persoo-rating-menu-root',
+      //       noRefinementRoot: 'persoo-rating-menu-no-refinement-root',
+      //       list: 'persoo-rating-menu-list',
+      //       item: 'persoo-rating-menu-item',
+      //       selectedItem: 'persoo-rating-menu-selected-item',
+      //       disabledItem: 'persoo-rating-menu-disabled-item',
+      //       starIcon: 'persoo-rating-menu-starIcon',
+      //       fullStarIcon: 'persoo-rating-menu-full-star-icon',
+      //       emptyStarIcon: 'persoo-rating-menu-empty-star-icon',
+      //       label: 'persoo-rating-menu-label',
+      //       count: 'persoo-rating-menu-count'
+      //     }
+      //   }),
 
-        window.algoliaWidgets.refinementList({
-          container: '#algolia-refinement-list',
-          attribute: 'brand',
-          searchable: true
-        }),
+      //   window.algoliaWidgets.refinementList({
+      //     container: '#algolia-refinement-list',
+      //     attribute: 'brand',
+      //     searchable: true
+      //   }),
 
-        window.algoliaWidgets.searchBox({
-          // Docs: https://www.algolia.com/doc/api-reference/widgets/search-box/js/
-          container: '#algolia-searchbox'
-        }),
+      //   window.algoliaWidgets.searchBox({
+      //     // Docs: https://www.algolia.com/doc/api-reference/widgets/search-box/js/
+      //     container: '#algolia-searchbox'
+      //   }),
 
-        // window.algoliaWidgets.stats({
-        //   // Docs: https://www.algolia.com/doc/api-reference/widgets/stats/js/
-        //   container: '#persoo-stats',
-        //   cssClasses: {
-        //     root: 'persoo-stats-root',
-        //     text: ['persoo-stats-text', 'persoo-stats-text--subclass']
-        //   }
-        // }),
+      //   // window.algoliaWidgets.stats({
+      //   //   // Docs: https://www.algolia.com/doc/api-reference/widgets/stats/js/
+      //   //   container: '#persoo-stats',
+      //   //   cssClasses: {
+      //   //     root: 'persoo-stats-root',
+      //   //     text: ['persoo-stats-text', 'persoo-stats-text--subclass']
+      //   //   }
+      //   // }),
 
-        window.algoliaWidgets.toggleRefinement({
-          // Docs: https://www.algolia.com/doc/api-reference/widgets/toggle-refinement/js/
-          container: '#algolia-toggle-refinement',
-          attribute: 'free_shipping',
-          cssClasses: {
-            root: 'persoo-toggle-refinment-root',
-            label: 'persoo-toggle-refinment-label',
-            checkbox: 'persoo-toggle-refinment-checkbox',
-            labelText: 'persoo-toggle-refinment-labelText'
-          },
-          templates: {
-            labelText: 'Doprava zdarma'
-          }
-        })
-      ])
+      //   window.algoliaWidgets.toggleRefinement({
+      //     // Docs: https://www.algolia.com/doc/api-reference/widgets/toggle-refinement/js/
+      //     container: '#algolia-toggle-refinement',
+      //     attribute: 'free_shipping',
+      //     cssClasses: {
+      //       root: 'persoo-toggle-refinment-root',
+      //       label: 'persoo-toggle-refinment-label',
+      //       checkbox: 'persoo-toggle-refinment-checkbox',
+      //       labelText: 'persoo-toggle-refinment-labelText'
+      //     },
+      //     templates: {
+      //       labelText: 'Doprava zdarma'
+      //     }
+      //   })
+      // ])
 
       // try {
       //   searchAlgolia.start()
