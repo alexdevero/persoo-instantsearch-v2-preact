@@ -66,6 +66,8 @@
 .ais-Menu-showMore--disabled {
   opacity: .6;
   cursor: not-allowed;
+  /* Hide disabled button */
+  display: none;
 }
 
 .ais-Menu-showMore--disabled:hover,
@@ -102,9 +104,4 @@
 
 .ais-Menu-searchBox > * {
   margin-bottom: .5rem;
-}
-
-/* Hide disabled button */
-.ais-Menu-showMore--disabled {
-  display: none;
 }

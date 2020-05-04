@@ -96,6 +96,8 @@
 .ais-HierarchicalMenu-showMore--disabled {
   opacity: .6;
   cursor: not-allowed;
+  /* Hide disabled button */
+  display: none;
 }
 
 .ais-HierarchicalMenu-showMore--disabled:hover,
@@ -109,9 +111,4 @@
 
 .ais-HierarchicalMenu-searchBox > * {
   margin-bottom: .5rem;
-}
-
-/* Hide disabled button */
-.ais-HierarchicalMenu-showMore--disabled {
-  display: none;
 }

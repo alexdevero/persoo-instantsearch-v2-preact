@@ -48,6 +48,8 @@
 .ais-RefinementList-showMore--disabled {
   opacity: .6;
   cursor: not-allowed;
+  /* Hide disabled button */
+  display: none;
 }
 
 .ais-RefinementList-showMore--disabled:hover,
@@ -69,9 +71,4 @@
 
 .ais-RefinementList-searchBox > * {
   margin-bottom: .5rem;
-}
-
-/* Hide disabled button */
-.ais-RefinementList-showMore--disabled {
-  display: none;
 }
