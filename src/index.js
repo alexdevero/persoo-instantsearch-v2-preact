@@ -4,6 +4,11 @@
 import algoliasearch from 'algoliasearch/lite'
 import instantsearch from 'instantsearch.js'
 
+// Import Array.includes polyfill
+import 'mdn-polyfills/Array.prototype.includes'
+// Import Array.forEach polyfill
+import 'mdn-polyfills/Array.prototype.forEach'
+
 // Import Promise polyfill
 import 'promise-polyfill/src/polyfill'
 
@@ -84,6 +89,11 @@ import { getRenderFunction, throttle } from './lib/utils'
 
 // Imports for Persoo
 import * as instantSearchWidgets from 'instantsearch.js/es/widgets'
+
+// Function to make IE9+ support forEach also for NodeList (use with polyfill):
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = Array.prototype.forEach
+}
 
 function createInstantSearchConnector(options) {
   const searchClient = new PersooInstantSearchClient(options)
