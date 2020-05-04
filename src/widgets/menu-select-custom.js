@@ -32,7 +32,7 @@ export const renderMenuSelectCustom = (renderOptions, isFirstRender) => {
   selectMenuCustom = document.querySelector(widgetParams.container)
 
   // Add default class for selectMenuCustom
-  selectMenuCustom.classList.add('persoo-custom-select')
+  selectMenuCustom.classList.add('persoo-custom-select', 'persoo-custom-select-menu-el')
 
   // Apply root class if user provided it
   if (widgetParams.cssClasses && widgetParams.cssClasses.root) selectMenuCustom.classList.add(widgetParams.cssClasses.root)
@@ -40,16 +40,16 @@ export const renderMenuSelectCustom = (renderOptions, isFirstRender) => {
   // Construct DOM of selectMenuCustom dropdown
   selectMenuCustom.innerHTML = `
     <button
-      class="${widgetParams.cssClasses && widgetParams.cssClasses.toggler ? widgetParams.cssClasses.toggler + ' ' : ''}persoo-custom-select-toggler ${!canRefine ? 'persoo-custom-select-toggler-disabled' : ''}"
+      class="${widgetParams.cssClasses && widgetParams.cssClasses.toggler ? widgetParams.cssClasses.toggler + ' ' : ''}persoo-custom-select-toggler persoo-custom-select-menu-el-toggler ${!canRefine ? 'persoo-custom-select-toggler-disabled' : ''}"
     >
       ${currentSelectedOption} ${currentSelectedOptionCount !== null ? `(${currentSelectedOptionCount})` : ''}
     </button>
-    <div class="${widgetParams.cssClasses && widgetParams.cssClasses.select ? widgetParams.cssClasses.select + ' ' : ''}persoo-custom-select-menu">
+    <div class="${widgetParams.cssClasses && widgetParams.cssClasses.select ? widgetParams.cssClasses.select + ' ' : ''}persoo-custom-select-menu persoo-custom-select-menu-el-menu">
       ${items
         .map(
           item => `
             <a
-              class="${widgetParams.cssClasses && widgetParams.cssClasses.item ? widgetParams.cssClasses.item + ' ' : ''}persoo-custom-select-option"
+              class="${widgetParams.cssClasses && widgetParams.cssClasses.item ? widgetParams.cssClasses.item + ' ' : ''}persoo-custom-select-option persoo-custom-select-menu-el-option"
               data-persoo-item-value="${item.value}"
               ${item.isRefined ? 'selected' : ''}
             >
@@ -63,26 +63,26 @@ export const renderMenuSelectCustom = (renderOptions, isFirstRender) => {
 
   // Add event listener to open dropdown
   // when user clicks on dropdown button
-  selectMenuCustom.querySelector('.persoo-custom-select-toggler').addEventListener('click', () => {
-    selectMenuCustom.querySelector('.persoo-custom-select-menu').classList.toggle('persoo-custom-select-menu--visible')
+  selectMenuCustom.querySelector('.persoo-custom-select-menu-el-toggler').addEventListener('click', () => {
+    selectMenuCustom.querySelector('.persoo-custom-select-menu-el-menu').classList.toggle('persoo-custom-select-menu--visible')
   })
 
   // Add event listener to close dropdown
   // when user clicks outside it
   document.addEventListener('click', (event) => {
-    if (!event.target.classList.contains('persoo-custom-select-option') &&
-    !event.target.classList.contains('persoo-custom-select-menu') &&
-    !event.target.classList.contains('persoo-custom-select-toggler') &&
-    !event.target.classList.contains('persoo-custom-select')) {
-      if (selectMenuCustom.querySelector('.persoo-custom-select-menu').classList.contains('persoo-custom-select-menu--visible')) {
-        selectMenuCustom.querySelector('.persoo-custom-select-menu').classList.remove('persoo-custom-select-menu--visible')
+    if (!event.target.classList.contains('persoo-custom-select-menu-el-option') &&
+    !event.target.classList.contains('persoo-custom-select-menu-el-menu') &&
+    !event.target.classList.contains('persoo-custom-select-menu-el-toggler') &&
+    !event.target.classList.contains('persoo-custom-select-menu-el')) {
+      if (selectMenuCustom.querySelector('.persoo-custom-select-menu-el-menu').classList.contains('persoo-custom-select-menu--visible')) {
+        selectMenuCustom.querySelector('.persoo-custom-select-menu-el-menu').classList.remove('persoo-custom-select-menu--visible')
       }
     }
   })
 
   // Add event listener to options
   // to trigger refinement of values
-  selectMenuCustom.querySelectorAll('.persoo-custom-select-option').forEach(element => {
+  selectMenuCustom.querySelectorAll('.persoo-custom-select-menu-el-option').forEach(element => {
     element.addEventListener('click', event => {
       refine(event.target.dataset.persooItemValue)
 
