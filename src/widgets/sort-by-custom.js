@@ -26,20 +26,20 @@ export const renderSortByCustom = (renderOptions, isFirstRender) => {
   // if (hasNoResults) sortByCustom.classList.add('persoo-custom-select--disabled')
 
   // Add default class for sortByCustom
-  sortByCustom.classList.add('persoo-custom-select')
+  sortByCustom.classList.add('persoo-custom-select', 'persoo-custom-sort-by')
 
   // Apply root class if user provided it
   if (widgetParams.cssClasses && widgetParams.cssClasses.root) sortByCustom.classList.add(widgetParams.cssClasses.root)
 
   // Construct DOM of sortByCustom dropdown
   sortByCustom.innerHTML = `
-    <button class="${widgetParams.cssClasses && widgetParams.cssClasses.toggler ? widgetParams.cssClasses.toggler + ' ' : ''}persoo-custom-select-toggler">${currentSelectedOption}</button>
-    <div class="${widgetParams.cssClasses && widgetParams.cssClasses.select ? widgetParams.cssClasses.select + ' ' : ''}persoo-custom-select-menu">
+    <button class="${widgetParams.cssClasses && widgetParams.cssClasses.toggler ? widgetParams.cssClasses.toggler + ' ' : ''}persoo-custom-select-toggler persoo-custom-sort-by-toggler">${currentSelectedOption}</button>
+    <div class="${widgetParams.cssClasses && widgetParams.cssClasses.select ? widgetParams.cssClasses.select + ' ' : ''}persoo-custom-select-menu persoo-custom-sort-by-menu">
       ${options
         .map(
           option => `
             <a
-              class="${widgetParams.cssClasses && widgetParams.cssClasses.item ? widgetParams.cssClasses.item + ' ' : ''}persoo-custom-select-option"
+              class="${widgetParams.cssClasses && widgetParams.cssClasses.item ? widgetParams.cssClasses.item + ' ' : ''}persoo-custom-select-option persoo-custom-sort-by-option"
               data-persoo-item-value="${option.value}"
               ${option.value === currentRefinement ? 'selected' : ''}
             >
@@ -54,25 +54,25 @@ export const renderSortByCustom = (renderOptions, isFirstRender) => {
   // Add event listener to open dropdown
   // when user clicks on dropdown button
   sortByCustom.querySelector('.persoo-custom-select-toggler').addEventListener('click', () => {
-    sortByCustom.querySelector('.persoo-custom-select-menu').classList.toggle('persoo-custom-select-menu--visible')
+    sortByCustom.querySelector('.persoo-custom-sort-by-menu').classList.toggle('persoo-custom-select-menu--visible')
   })
 
   // Add event listener to close dropdown
   // when user clicks outside it
   document.addEventListener('click', (event) => {
-    if (!event.target.classList.contains('persoo-custom-select-option') &&
-    !event.target.classList.contains('persoo-custom-select-menu') &&
-    !event.target.classList.contains('persoo-custom-select-toggler') &&
-    !event.target.classList.contains('persoo-custom-select')) {
-      if (sortByCustom.querySelector('.persoo-custom-select-menu').classList.contains('persoo-custom-select-menu--visible')) {
-        sortByCustom.querySelector('.persoo-custom-select-menu').classList.remove('persoo-custom-select-menu--visible')
+    if (!event.target.classList.contains('persoo-custom-sort-by-option') &&
+    !event.target.classList.contains('persoo-custom-sort-by-menu') &&
+    !event.target.classList.contains('persoo-custom-sort-by-toggler') &&
+    !event.target.classList.contains('persoo-custom-sort-by')) {
+      if (sortByCustom.querySelector('.persoo-custom-sort-by-menu').classList.contains('persoo-custom-select-menu--visible')) {
+        sortByCustom.querySelector('.persoo-custom-sort-by-menu').classList.remove('persoo-custom-select-menu--visible')
       }
     }
   })
 
   // Add event listener to options
   // to trigger refinement of values
-  sortByCustom.querySelectorAll('.persoo-custom-select-option').forEach(element => {
+  sortByCustom.querySelectorAll('.persoo-custom-sort-by-option').forEach(element => {
     element.addEventListener('click', event => {
       refine(event.target.dataset.persooItemValue)
 
