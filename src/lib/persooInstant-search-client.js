@@ -210,8 +210,12 @@ function preparePersooRequestProps(options, params, indexWithSort) {
   for (var i = 0; i < numericFilters.length; i++) {
     var num_parts = numericFilters[i].split(/\b/)
     var num_field = num_parts[0]
-    var num_operator = num_parts[1]
-    var num_value = parseFloat(num_parts[2])
+    // Hack for negative values
+    // Symbol for negative values are parsed with minus '-' sign
+    // i.e.: '>=' becomes '>='
+    // As a result, symbol can't be found in convertOp variable
+    var num_value = num_parts[1].indexOf('-') > -1 ? '-' + parseFloat(num_parts[2]) : parseFloat(num_parts[2])
+    var num_operator = num_parts[1].replace(/-/g, '')
     var convertOp = {
       '>': 'gt',
       '<': 'lt',
