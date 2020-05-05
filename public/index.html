@@ -99,6 +99,10 @@
 
         <div id="persoo-range-slider"></div>
 
+        <h3>Range slider - temperature</h3>
+
+        <div id="persoo-range-slider-temperature"></div>
+
         <h3>Range input</h3>
 
         <div id="persoo-range-input"></div>
@@ -336,6 +340,8 @@
 
             //       <p>Rating: {{reviewStars}}</p>
 
+            //       <p>Temperature: {{temperatur}}</p>
+
             //       <h4>{{title}}</h4>
             //     </div>
 
@@ -350,7 +356,7 @@
             //   </div>
             // `
             // NOTE: Version for IE
-            item: "<div class=\"persoo-hits-item\"><div class=\"persoo-hits-item-image\"><img src=\"{{imageLink}}\" align=\"{{imageLink}}\" alt=\"{{title}}\" /></div><div class=\"persoo-hits-item-name\">{{#helpers.highlight}}{ \"attribute\": \"title\", \"highlightedTagName\": \"mark\" }{{/helpers.highlight}}<h5>Index of item: {{ __hitIndex }}:{{#helpers.highlight}}{ \"attribute\": \"title\" }{{/helpers.highlight}}</h5><p>Rating: {{reviewStars}}</p><h4>{{title}}</h4><div><div class=\"persoo-hits-item-description\">{{#helpers.highlight}}{ \"attribute\": \"description\", \"highlightedTagName\": \"mark\" }{{/helpers.highlight}}{{description}}</div><div class=\"persoo-hits-item-price\">{{price}} Kč</div></div>"
+            item: "<div class=\"persoo-hits-item\"><div class=\"persoo-hits-item-image\"><img src=\"{{imageLink}}\" align=\"{{imageLink}}\" alt=\"{{title}}\" /></div><div class=\"persoo-hits-item-name\">{{#helpers.highlight}}{ \"attribute\": \"title\", \"highlightedTagName\": \"mark\" }{{/helpers.highlight}}<h5>Index of item: {{ __hitIndex }}:{{#helpers.highlight}}{ \"attribute\": \"title\" }{{/helpers.highlight}}</h5><p>Rating: {{reviewStars}}</p><p>Temperature: {{temperatur}}</p><h4>{{title}}</h4><div><div class=\"persoo-hits-item-description\">{{#helpers.highlight}}{ \"attribute\": \"description\", \"highlightedTagName\": \"mark\" }{{/helpers.highlight}}{{description}}</div><div class=\"persoo-hits-item-price\">{{price}} Kč</div></div>"
           }
         }),
 
@@ -445,6 +451,14 @@
           // Docs: https://www.algolia.com/doc/api-reference/widgets/range-slider/js/
           container: '#persoo-range-slider',
           attribute: 'price',
+          tooltips: true,
+          pips: false
+        }),
+
+        persooInstantSearch.widgets.rangeSlider({
+          // Docs: https://www.algolia.com/doc/api-reference/widgets/range-slider/js/
+          container: '#persoo-range-slider-temperature',
+          attribute: 'temperatur',
           tooltips: true,
           pips: false
         }),
