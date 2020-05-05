@@ -93,8 +93,10 @@ import { getRenderFunction, throttle } from './lib/utils'
 import * as instantSearchWidgets from 'instantsearch.js/es/widgets'
 
 // Function to make IE9+ support forEach also for NodeList (use with polyfill):
-if (window.NodeList && !NodeList.prototype.forEach) {
-  NodeList.prototype.forEach = Array.prototype.forEach
+if (typeof window !== 'undefined') {
+  if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach
+  }
 }
 
 function createInstantSearchConnector(options) {
