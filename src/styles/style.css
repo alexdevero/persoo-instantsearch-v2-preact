@@ -52,7 +52,7 @@ body {
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: 16px;
 }
 
 .container {
@@ -186,4 +186,10 @@ body {
 
 .per-page + .sort-by {
   margin-left: 12px;
+}
+
+/* Custom styles for specific widgets */
+#persoo-range-slider-temperature .rheostat-tooltip::after {
+  content: '°C';
+  margin-left: 3px;
 }
