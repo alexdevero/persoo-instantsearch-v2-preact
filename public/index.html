@@ -313,7 +313,14 @@
             'category_level0',
             'category_level1',
             'category_level2'
-          ]
+          ],
+          cssClasses: {
+            root: 'persoo-hierarchical-menu-root',
+            list: [
+              'persoo-hierarchical-menu-list',
+              'persoo-hierarchical-menu-list--subclass',
+            ],
+          },
         }),
 
         persooInstantSearch.widgets.hits({
@@ -321,7 +328,10 @@
           container: '#persoo-hits',
           cssClasses: {
             root: 'persoo-hits',
-            list: ['persoo-hits-list', 'persoo-hits-list--subclass']
+            list: [
+              'persoo-hits-list',
+              'persoo-hits-list--subclass'
+            ]
           },
           templates: {
             empty: 'Nebyly nalezeny žádné výsledky pro <q>{{ query }}</q>.',
@@ -369,13 +379,13 @@
             { label: '32 na stránku', value: 32 }
           ],
           cssClasses: {
-            root: 'persoo-custom-per-page-root',
-            toggler: 'persoo-custom-per-page-toggler',
+            root: 'persoo-algolia-per-page-root',
+            toggler: 'persoo-algolia-per-page-toggler',
             select: [
-              'persoo-custom-per-page',
-              'persoo-custom-per-page--subclass'
+              'persoo-algolia-per-page',
+              'persoo-algolia-per-page--subclass'
             ],
-            item: 'persoo-custom-per-page-option'
+            item: 'persoo-algolia-per-page-option'
           }
         }),
 
@@ -421,14 +431,21 @@
             { label: 'Méně než 5000 Kč', end: 5000 },
             { label: 'Mezi 5000 a 10000 Kč', start: 5000, end: 10000 },
             { label: 'Více než 10000 Kč', start: 10000 }
-          ]
+          ],
+          cssClasses: {
+            root: 'persoo-numeric-menu-root',
+            list: [
+              'persoo-numeric-menu-list',
+              'persoo-numeric-menu-list--subclass',
+            ],
+          }
         }),
 
         persooInstantSearch.widgets.pagination({
           // Docs: https://www.algolia.com/doc/api-reference/widgets/pagination/js/
           container: '#persoo-pagination',
           cssClasses: {
-            root: 'persoo-pagination',
+            root: 'persoo-pagination-root',
             noRefinementRoot: 'persoo-pagination--empty',
             list: 'persoo-pagination-list',
             item: 'persoo-pagination-item',
@@ -444,7 +461,15 @@
         }),
 
         persooInstantSearch.widgets.poweredByCustom({
-          container: '#persoo-powered-by'
+          // Docs: https://www.algolia.com/doc/api-reference/widgets/powered-by/js/
+          container: '#persoo-powered-by',
+          cssClasses: {
+            root: 'persoo-powered-by-root',
+            link: [
+              'persoo-powered-by-link',
+              'persoo-powered-by-link--subclass',
+            ],
+          }
         }),
 
         persooInstantSearch.widgets.rangeSlider({
@@ -452,7 +477,14 @@
           container: '#persoo-range-slider',
           attribute: 'price',
           tooltips: true,
-          pips: false
+          pips: false,
+          cssClasses: {
+            root: 'persoo-range-slider-root',
+            handle: [
+              'persoo-range-slider-handle',
+              'persoo-range-slider-handle--subclass',
+            ],
+          }
         }),
 
         persooInstantSearch.widgets.rangeSlider({
@@ -460,7 +492,14 @@
           container: '#persoo-range-slider-temperature',
           attribute: 'temperatur',
           tooltips: true,
-          pips: false
+          pips: false,
+          cssClasses: {
+            root: 'persoo-range-slider-root',
+            handle: [
+              'persoo-range-slider-handle',
+              'persoo-range-slider-handle--subclass',
+            ],
+          }
         }),
 
         // ! TODO: Implement ratingMenu component
@@ -491,6 +530,13 @@
           templates: {
             separatorText: 'do',
             submitText: 'Zobrazit'
+          },
+          cssClasses: {
+            root: 'persoo-range-input-root',
+            form: [
+              'persoo-range-input-form',
+              'persoo-range-input-form--subclass',
+            ],
           }
         }),
 
@@ -501,7 +547,14 @@
           limit: 7,
           showMore: true,
           searchable: true,
-          searchableEscapeFacetValues: false
+          searchableEscapeFacetValues: true,
+          cssClasses: {
+            root: 'persoo-refinement-list-root',
+            list: [
+              'persoo-refinement-list-list',
+              'persoo-refinement-list-list--subclass',
+            ],
+          }
         }),
 
         // // persooInstantSearch.widgets.refinementListWithPanel({
@@ -511,7 +564,14 @@
 
         persooInstantSearch.widgets.searchBox({
           // Docs: https://www.algolia.com/doc/api-reference/widgets/search-box/js/
-          container: '#persoo-searchbox'
+          container: '#persoo-searchbox',
+          cssClasses: {
+          root: 'persoo-search-box-root',
+            form: [
+              'persoo-search-box-form',
+              'persoo-search-box-form--subclass'
+            ]
+          }
         }),
 
         persooInstantSearch.widgets.sortBy({
@@ -521,7 +581,14 @@
             { label: 'Defaultní', value: 'products' },
             { label: 'Nejlevnější', value: 'products_price_asc' },
             { label: 'Nejdražší', value: 'products_price_desc' }
-          ]
+          ],
+          cssClasses: {
+            root: 'persoo-sort-by-root',
+            select: [
+              'persoo-sort-by-select',
+              'persoo-sort-by-select--subclass',
+            ],
+          }
         }),
 
         persooInstantSearch.widgets.stats({
@@ -529,7 +596,10 @@
           container: '#persoo-stats',
           cssClasses: {
             root: 'persoo-stats-root',
-            text: ['persoo-stats-text', 'persoo-stats-text--subclass']
+            text: [
+              'persoo-stats-text',
+              'persoo-stats-text--subclass'
+            ]
           }
         }),
 
@@ -548,6 +618,7 @@
         //
         // Custom Persoo widgets
         persooInstantSearch.widgets.hitsPerPageCustom({
+          // Docs: https://www.algolia.com/doc/api-reference/widgets/hits-per-page/js/
           container: '#persoo-hits-per-page-custom',
           items: [
             { label: '8 na stránku', value: 8, default: true },
@@ -565,16 +636,8 @@
           }
         }),
 
-        persooInstantSearch.widgets.sortByCustom({
-          container: '#persoo-sort-by-custom',
-          items: [
-            { label: 'Defaultní', value: 'products' },
-            { label: 'Nejlevnější', value: 'products_price_asc' },
-            { label: 'Nejdražší', value: 'products_price_desc' }
-          ]
-        }),
-
         persooInstantSearch.widgets.menuSelectCustom({
+          // Docs: https://www.algolia.com/doc/api-reference/widgets/menu-select/js/
           container: '#persoo-menu-select-custom',
           attribute: 'gender',
           limit: 5,
@@ -589,19 +652,36 @@
           templates: {
             defaultOption: 'Zobrazit vše',
           }
+        }),
+
+        persooInstantSearch.widgets.sortByCustom({
+          // Docs: https://www.algolia.com/doc/api-reference/widgets/sort-by/js/
+          container: '#persoo-sort-by-custom',
+          items: [
+            { label: 'Defaultní', value: 'products' },
+            { label: 'Nejlevnější', value: 'products_price_asc' },
+            { label: 'Nejdražší', value: 'products_price_desc' }
+          ],
+          cssClasses: {
+            root: 'persoo-sort-by-root',
+            select: [
+              'persoo-sort-by-select',
+              'persoo-sort-by-select--subclass',
+            ],
+          }
         })
       ])
 
 
       // Demo settings for Algolia prototype
-      const searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76')
+      // const searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76')
 
-      const searchAlgolia = instantsearch({
-        indexName: 'instant_search',
-        searchClient
-      })
+      // const searchAlgolia = instantsearch({
+      //   indexName: 'instant_search',
+      //   searchClient
+      // })
 
-      searchAlgolia.addWidgets([
+      // searchAlgolia.addWidgets([
       //   window.algoliaWidgets.hits({
       //     container: '#algolia-hits',
       //     cssClasses: {
@@ -687,11 +767,11 @@
       //     }
       //   }),
 
-        window.algoliaWidgets.refinementList({
-          container: '#algolia-refinement-list',
-          attribute: 'brand',
-          searchable: true
-        }),
+        // window.algoliaWidgets.refinementList({
+        //   container: '#algolia-refinement-list',
+        //   attribute: 'brand',
+        //   searchable: true
+        // }),
 
       //   window.algoliaWidgets.searchBox({
       //     // Docs: https://www.algolia.com/doc/api-reference/widgets/search-box/js/
@@ -721,7 +801,7 @@
       //       labelText: 'Doprava zdarma'
       //     }
       //   })
-      ])
+      // ])
 
       // try {
       //   searchAlgolia.start()
