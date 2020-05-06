@@ -4,8 +4,12 @@
 import algoliasearch from 'algoliasearch/lite'
 import instantsearch from 'instantsearch.js'
 
+// Import String.normalize polyfill
+import 'unorm'
+
 // Import Array.includes polyfill
 import 'mdn-polyfills/Array.prototype.includes'
+
 // Import Array.forEach polyfill
 import 'mdn-polyfills/Array.prototype.forEach'
 
