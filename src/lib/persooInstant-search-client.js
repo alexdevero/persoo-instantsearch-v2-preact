@@ -159,7 +159,7 @@ function preparePersooRequestProps(options, params, indexWithSort) {
     maxValuesPerFacet: params.maxValuesPerFacet,
     aggregations: (Array.isArray(params.facets) ? params.facets : ((params.facets && [params.facets]) || [])),
     // includeFields: []
-    // boolQuery: {}
+    boolQuery: params.boolQuery || {}
   }
 
   // ? INFO: When filter for boolQuery is used:
@@ -424,52 +424,180 @@ export default class PersooInstantSearchClient {
 
       // Note: send requests to Persoo in opposite order, so the primary requests is the last because of algorithm
       // debugging in Persoo. (widget waits for all requests before rerendering, so it does not matter)
-      var requestsCount = requests.length
-      var mergeCallback = createMergePersooResponsesToBatchCallback(algoliaCallback, requestsCount, cache)
+      // var requestsCount = requests.length
+      // var mergeCallback = createMergePersooResponsesToBatchCallback(algoliaCallback, requestsCount, cache)
 
-      for (var i = requestsCount - 1; i >= 0; i--) {
-        var request = requests[i]
-        var params = request.params
-        var indexWithSort = request.indexName
+      // for (var i = requestsCount - 1; i >= 0; i--) {
+      //   var request = requests[i]
+      //   var params = request.params
+      //   var indexWithSort = request.indexName
 
-        var persooProps = preparePersooRequestProps(options, params, indexWithSort)
-        var queryHash = hashCode(JSON.stringify(persooProps)) // without requestID
-        var externalRequestID = statistics.batchRequestCount + '_' + i
+      //   var persooProps = preparePersooRequestProps(options, params, indexWithSort)
+      //   var queryHash = hashCode(JSON.stringify(persooProps)) // without requestID
+      //   var externalRequestID = statistics.batchRequestCount + '_' + i
 
-        persooProps.externalRequestID = externalRequestID
+      //   persooProps.externalRequestID = externalRequestID
 
-        if (DEBUG_SERVER) {
-          console.log('... persoo.send('  + JSON.stringify(persooProps) + ')')
-        }
+      //   if (DEBUG_SERVER) {
+      //     console.log('... persoo.send('  + JSON.stringify(persooProps) + ')')
+      //   }
 
-        var cachedResponse = cache.get(queryHash);
-        if (cachedResponse) {
-          if (DEBUG_SERVER) {
-            console.log('... Serving data from cache: ' + JSON.stringify(cachedResponse.items.length) + ' items.')
-          }
+      //   var cachedResponse = cache.get(queryHash);
+      //   if (cachedResponse) {
+      //     if (DEBUG_SERVER) {
+      //       console.log('... Serving data from cache: ' + JSON.stringify(cachedResponse.items.length) + ' items.')
+      //     }
 
-          cachedResponse.externalRequestID = externalRequestID
-          mergeCallback(persooProps, queryHash, cachedResponse)
-        } else {
-          persoo('send', persooProps, mergeCallback.bind(this, persooProps, queryHash))
+      //     cachedResponse.externalRequestID = externalRequestID
+      //     mergeCallback(persooProps, queryHash, cachedResponse)
+      //   } else {
+      //     persoo('send', persooProps, mergeCallback.bind(this, persooProps, queryHash))
 
-          // empty 'data' in mergeCallback are interpretted as error
-          persoo('onError', mergeCallback.bind(this, persooProps, queryHash, {}))
-        }
-      }
+      //     // empty 'data' in mergeCallback are interpretted as error
+      //     persoo('onError', mergeCallback.bind(this, persooProps, queryHash, {}))
+      //   }
+      // }
     }
 
     // TODO: implement searchForFacetValues for searchable refinementList
     function searchForFacetValues(queries) {
       // https://github.com/algolia/algoliasearch-client-javascript/blob/e6dec843932bdfaac13ffa1e0a11964975499078/packages/client-search/src/methods/client/multipleSearchForFacetValues.ts
 
-      return Promise.all(
-        queries.map(function(query) {
-          console.log(query)
-          const { facetName, facetQuery, ...params } = query.params
+      // ! Persoo use: brand | prefix search by variable session.lastEvent[query]
 
+      const {
+        facetName,
+        facetQuery,
+        facets,
+        highlightPostTag,
+        highlightPreTag,
+        hitsPerPage,
+        maxFacetHits,
+        maxValuesPerFacet,
+        page,
+        query,
+        tagFilters,
+      } = queries[0].params
+
+      // return Promise.all(
+      //   queries.map(function(query) {
+      //     console.log(query)
+      //     const { facetName, facetQuery, ...params } = query.params
+      //   })
+      // )
+
+      var searchForFacetValuesParams = {
+        hitsPerPage: queries[0].params.hitsPerPage || 8,
+        maxValuesPerFacet: queries[0].params.maxValuesPerFacet || 20,
+        page: queries[0].params.page || 0,
+        query: facetQuery,
+        tagFilters: queries[0].params.tagFilters || '',
+        facets: facetName || [],
+        facetFilters: queries[0].params.facetFilters || [],
+        // boolQuery: {
+        //   must: [
+        //     {
+        //       type: 'customRule',
+        //       fields: [
+        //         facetName,
+        //         '$in',
+        //         'value',
+        //         facetQuery
+        //       ]
+        //     }
+        //   ]
+        // }
+      }
+
+      const persooProps = preparePersooRequestProps(optionsSearch, searchForFacetValuesParams, queries[0].indexName)
+
+      return new Promise(function(resolve, reject) {
+        persoo('send', persooProps, function(data) {
+          // resolve(data)
+          var receivedData = translateResponse(data, persooProps)
+
+          // facets: {Jurek: 93}
+          const response = []
+
+          for (const facetObjProp in receivedData.facets[facetName]) {
+            // const prefix = facetObjProp.substring(0, facetObjProp.indexOf((facetQuery)))
+            // const postfix = facetObjProp.substring(facetObjProp.indexOf((facetQuery)) + facetQuery.length)
+
+            // !! HACK
+            // Normalize strings - remove accents and diacritics (á => a, é => e)
+            const normalizedFacet = facetObjProp.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            const normalizedQuery = facetQuery.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+
+            // !! HACK
+            // Allow only values that contain searched string
+            if (normalizedFacet.toLocaleLowerCase().indexOf(normalizedQuery.toLowerCase()) > -1) {
+              response.push({
+                value: facetObjProp,
+                count: receivedData.facets[facetName][facetObjProp],
+                highlighted: facetObjProp + '__ais-highlight__' + '__/ais-highlight__'
+              })
+            }
+          }
+
+          const facetHits = receivedData.facets[facetName]
+          console.log('receivedData: ', facetHits, receivedData)
+
+          resolve({
+            // ! Resolved data:
+            //   facetHits: [
+            //     {
+            //       value: 'Apple',
+            //       highlighted: '__ais-highlight__A__/ais-highlight__pple',
+            //       count: 442
+            //     },
+            //     {
+            //       value: 'Asus',
+            //       highlighted: '__ais-highlight__A__/ais-highlight__sus',
+            //       count: 142
+            //     },
+            //   ],
+            //   exhaustiveFacetsCount: true,
+            //   processingTimeMS: 1
+            // }
+            facetHits: response,
+            exhaustiveFacetsCount: true,
+            processingTimeMS: 1
+          })
         })
-      )
+      })
+
+      // persoo('send', persooProps, function(data) {
+      //   // resolve(data)
+      //   var receivedData = translateResponse(data, persooProps)
+      //   console.log('receivedData: ', receivedData)
+      //   // resolve(receivedData)
+      //   // resolve(algoliaContent)
+      // })
+
+      // searchFunction(queries[0], 0)
+      //   .then(function(data) {
+      //     console.log('data: ', data)
+      //   })
+
+      // return new Promise(function(resolve, reject) {
+      //   // ? Resolve dummy data for reverse-engineering
+      //   resolve({
+      //     facetHits: [
+      //       {
+      //         value: 'Apple',
+      //         highlighted: '__ais-highlight__A__/ais-highlight__pple',
+      //         count: 442
+      //       },
+      //       {
+      //         value: 'Asus',
+      //         highlighted: '__ais-highlight__A__/ais-highlight__sus',
+      //         count: 142
+      //       },
+      //     ],
+      //     exhaustiveFacetsCount: true,
+      //     processingTimeMS: 1
+      //   })
+      // })
     }
 
     // throttle requests for people who type extremly fast
@@ -479,7 +607,7 @@ export default class PersooInstantSearchClient {
       addAlgoliaAgent: function() {},
       search: searchFunctionBatch, // searchFunctionBatchThrottled
       // TODO: implement searchForFacetValues for searchable refinementList
-      // searchForFacetValues: searchForFacetValues
+      searchForFacetValues: searchForFacetValues
     }
   }
 }
