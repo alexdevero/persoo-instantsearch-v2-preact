@@ -22,8 +22,8 @@ const DEBUG_LOCAL = true // true
 
 function translateResponse(data, persooEventProps) {
   // receivedData = translateResponse(data, persooEventProps)
-  if (DEBUG_LOCAL) console.log('translateResponse data:' , data)
-  if (DEBUG_LOCAL) console.log('translateResponse persooEventProps:' , persooEventProps)
+  if (DEBUG_LOCAL) console.log('translateResponse data:', data)
+  if (DEBUG_LOCAL) console.log('translateResponse persooEventProps:', persooEventProps)
 
   function translateAggregationGroup(aggregationsGroup) {
     var map = {}
@@ -185,6 +185,9 @@ function preparePersooRequestProps(options, params, indexWithSort) {
       var separatorPos = filterItem.indexOf(':')
       var field = filterItem.substring(0, separatorPos)
       var value = filterItem.substring(separatorPos + 1)
+
+      // Manually fix boolean values for refinements parsed as string
+      value = value === 'true' ? true : value
 
       // join values with the same key to array
       if (persooProps[field]) {
