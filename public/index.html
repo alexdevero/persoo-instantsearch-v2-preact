@@ -316,10 +316,17 @@
           ],
           cssClasses: {
             root: 'persoo-hierarchical-menu-root',
-            list: [
-              'persoo-hierarchical-menu-list',
-              'persoo-hierarchical-menu-list--subclass',
-            ],
+            noRefinementRoot: 'persoo-hierarchical-menu-no-refinement-Root',
+            list: 'persoo-hierarchical-menu-list',
+            childList: 'persoo-hierarchical-menu-child-list',
+            item: 'persoo-hierarchical-menu-item',
+            selectedItem: 'persoo-hierarchical-menu-selected-item',
+            parentItem: 'persoo-hierarchical-menu-parent-item',
+            link: 'persoo-hierarchical-menu-link',
+            label: 'persoo-hierarchical-menu-label',
+            count: 'persoo-hierarchical-menu-count',
+            showMore: 'persoo-hierarchical-menu-show-more',
+            disabledShowMore: 'persoo-hierarchical-menu-disabled-show-more'
           },
         }),
 
@@ -327,11 +334,10 @@
           // Docs: https://www.algolia.com/doc/api-reference/widgets/hits/js/
           container: '#persoo-hits',
           cssClasses: {
-            root: 'persoo-hits',
-            list: [
-              'persoo-hits-list',
-              'persoo-hits-list--subclass'
-            ]
+            root: 'persoo-hits-root',
+            emptyRoot: 'persoo-hits-empty-root',
+            list: 'persoo-hits-list',
+            item: 'persoo-hits-item',
           },
           templates: {
             empty: 'Nebyly nalezeny žádné výsledky pro <q>{{ query }}</q>.',
@@ -352,6 +358,8 @@
 
             //       <p>Temperature: {{temperatur}}</p>
 
+            //       <p>In sale: {{inSale}}</p>
+
             //       <h4>{{title}}</h4>
             //     </div>
 
@@ -366,7 +374,7 @@
             //   </div>
             // `
             // NOTE: Version for IE
-            item: "<div class=\"persoo-hits-item\"><div class=\"persoo-hits-item-image\"><img src=\"{{imageLink}}\" align=\"{{imageLink}}\" alt=\"{{title}}\" /></div><div class=\"persoo-hits-item-name\">{{#helpers.highlight}}{ \"attribute\": \"title\", \"highlightedTagName\": \"mark\" }{{/helpers.highlight}}<h5>Index of item: {{ __hitIndex }}:{{#helpers.highlight}}{ \"attribute\": \"title\" }{{/helpers.highlight}}</h5><p>Rating: {{reviewStars}}</p><p>Temperature: {{temperatur}}</p><h4>{{title}}</h4><div><div class=\"persoo-hits-item-description\">{{#helpers.highlight}}{ \"attribute\": \"description\", \"highlightedTagName\": \"mark\" }{{/helpers.highlight}}{{description}}</div><div class=\"persoo-hits-item-price\">{{price}} Kč</div></div>"
+            item: "<div class=\"persoo-hits-item\"><div class=\"persoo-hits-item-image\"><img src=\"{{imageLink}}\" align=\"{{imageLink}}\" alt=\"{{title}}\" /></div><div class=\"persoo-hits-item-name\">{{#helpers.highlight}}{ \"attribute\": \"title\", \"highlightedTagName\": \"mark\" }{{/helpers.highlight}}<h5>Index of item: {{ __hitIndex }}:{{#helpers.highlight}}{ \"attribute\": \"title\" }{{/helpers.highlight}}</h5><p>Rating: {{reviewStars}}</p><p>Temperature: {{temperatur}}</p><p>In sale: {{inSale}}</p><h4>{{title}}</h4><div><div class=\"persoo-hits-item-description\">{{#helpers.highlight}}{ \"attribute\": \"description\", \"highlightedTagName\": \"mark\" }{{/helpers.highlight}}{{description}}</div><div class=\"persoo-hits-item-price\">{{price}} Kč</div></div>"
           }
         }),
 
@@ -380,12 +388,8 @@
           ],
           cssClasses: {
             root: 'persoo-algolia-per-page-root',
-            toggler: 'persoo-algolia-per-page-toggler',
-            select: [
-              'persoo-algolia-per-page',
-              'persoo-algolia-per-page--subclass'
-            ],
-            item: 'persoo-algolia-per-page-option'
+            select: 'persoo-algolia-per-page-select',
+            option: 'persoo-algolia-per-page-option'
           }
         }),
 
@@ -396,11 +400,16 @@
           limit: 5,
           showMore: true,
           cssClasses: {
-            root: 'persoo-menu',
-            list: [
-              'persoo-menu-list',
-              'persoo-menu-list--sub-class'
-            ]
+            root: 'persoo-menu-root',
+            noRefinementRoot: 'persoo-menu-no-refinement-root',
+            list: 'persoo-menu-list',
+            item: 'persoo-menu-item',
+            selectedItem: 'persoo-menu-selected-item',
+            link: 'persoo-menu-link',
+            label: 'persoo-menu-label',
+            count: 'persoo-menu-count',
+            showMore: 'persoo-menu-show-more',
+            disabledShowMore: 'persoo-menu-disabled-show-more'
           }
         }),
 
@@ -411,11 +420,10 @@
           limit: 5,
           showMore: true,
           cssClasses: {
-            root: 'persoo-menu-select',
-            list: [
-              'persoo-menu-select-list',
-              'persoo-menu-select-list--sub-class'
-            ]
+            root: 'persoo-menu-select-root',
+            noRefinementRoot: 'persoo-menu-select-no-refinement-root',
+            select: 'persoo-menu-select-select',
+            option: 'persoo-menu-select-option'
           },
           templates: {
             defaultOption: 'Zobrazit vše',
@@ -433,11 +441,14 @@
             { label: 'Více než 10000 Kč', start: 10000 }
           ],
           cssClasses: {
-            root: 'persoo-numeric-menu-root',
-            list: [
-              'persoo-numeric-menu-list',
-              'persoo-numeric-menu-list--subclass',
-            ],
+            root: 'persoo-numeric-menu-root-root',
+            noRefinementRoot: 'persoo-numeric-menu-root-no-refinement-root',
+            list: 'persoo-numeric-menu-root-list',
+            item: 'persoo-numeric-menu-root-item',
+            selectedItem: 'persoo-numeric-menu-root-selected-item',
+            label: 'persoo-numeric-menu-root-label',
+            labelText: 'persoo-numeric-menu-root-label-text',
+            radio: 'persoo-numeric-menu-root-radio'
           }
         }),
 
@@ -471,10 +482,29 @@
           container: '#persoo-powered-by',
           cssClasses: {
             root: 'persoo-powered-by-root',
-            link: [
-              'persoo-powered-by-link',
-              'persoo-powered-by-link--subclass',
-            ],
+            link: 'persoo-powered-by-link',
+            label: 'persoo-powered-by-label',
+            logo: 'persoo-powered-by-logo'
+          }
+        }),
+
+        persooInstantSearch.widgets.rangeInput({
+          // Docs: https://www.algolia.com/doc/api-reference/widgets/range-input/js/
+          container: '#persoo-range-input',
+          attribute: 'price',
+          templates: {
+            separatorText: 'do',
+            submitText: 'Zobrazit'
+          },
+          cssClasses: {
+            root: 'persoo-range-input-root',
+            form: 'persoo-range-input-form',
+            label: 'persoo-range-input-label',
+            input: 'persoo-range-input-input',
+            inputMin: 'persoo-range-input-input-min',
+            inputMax: 'persoo-range-input-input-max',
+            separator: 'persoo-range-input-separator',
+            submit: 'persoo-range-input-submit'
           }
         }),
 
@@ -486,10 +516,10 @@
           pips: false,
           cssClasses: {
             root: 'persoo-range-slider-root',
-            handle: [
-              'persoo-range-slider-handle',
-              'persoo-range-slider-handle--subclass',
-            ],
+            handle: 'persoo-range-slider-handle',
+            lowerHandle: 'persoo-range-slider-lower-handle',
+            upperHandle: 'persoo-range-slider-upper-hHandle',
+            tooltip: 'persoo-range-slider-tooltip'
           }
         }),
 
@@ -501,10 +531,10 @@
           pips: false,
           cssClasses: {
             root: 'persoo-range-slider-root',
-            handle: [
-              'persoo-range-slider-handle',
-              'persoo-range-slider-handle--subclass',
-            ],
+            handle: 'persoo-range-slider-handle',
+            lowerHandle: 'persoo-range-slider-lower-handle',
+            upperHandle: 'persoo-range-slider-upper-hHandle',
+            tooltip: 'persoo-range-slider-tooltip'
           }
         }),
 
@@ -529,23 +559,6 @@
           }
         }),
 
-        persooInstantSearch.widgets.rangeInput({
-          // Docs: https://www.algolia.com/doc/api-reference/widgets/range-input/js/
-          container: '#persoo-range-input',
-          attribute: 'price',
-          templates: {
-            separatorText: 'do',
-            submitText: 'Zobrazit'
-          },
-          cssClasses: {
-            root: 'persoo-range-input-root',
-            form: [
-              'persoo-range-input-form',
-              'persoo-range-input-form--subclass',
-            ],
-          }
-        }),
-
         persooInstantSearch.widgets.refinementList({
           // Docs: https://www.algolia.com/doc/api-reference/widgets/refinement-list/js/
           container: '#persoo-refinement-list',
@@ -556,10 +569,26 @@
           searchableEscapeFacetValues: true,
           cssClasses: {
             root: 'persoo-refinement-list-root',
-            list: [
-              'persoo-refinement-list-list',
-              'persoo-refinement-list-list--subclass',
-            ],
+            noRefinementRoot: 'persoo-refinement-list-no-refinement-root',
+            noResults: 'persoo-refinement-list-no-results',
+            list: 'persoo-refinement-list-list',
+            item: 'persoo-refinement-list-item',
+            selectedItem: 'persoo-refinement-list-selected-item',
+            label: 'persoo-refinement-list-label',
+            checkbox: 'persoo-refinement-list-checkbox',
+            labelText: 'persoo-refinement-list-label-text',
+            showMore: 'persoo-refinement-list-show-more',
+            disabledShowMore: 'persoo-refinement-list-disabled-show-more',
+            count: 'persoo-refinement-list-count',
+            searchableRoot: 'persoo-refinement-list-searchable-root',
+            searchableForm: 'persoo-refinement-list-searchable-form',
+            searchableInput: 'persoo-refinement-list-searchable-input',
+            searchableSubmit: 'persoo-refinement-list-searchable-submit',
+            searchableSubmitIcon: 'persoo-refinement-list-searchable-submit-icon',
+            searchableReset: 'persoo-refinement-list-searchable-reset',
+            searchableResetIcon: 'persoo-refinement-list-searchable-reset-icon',
+            searchableLoadingIndicator: 'persoo-refinement-list-searchable-loading-indicator',
+            searchableLoadingIcon: 'persoo-refinement-list-searchable-loading-icon'
           }
         }),
 
@@ -572,11 +601,15 @@
           // Docs: https://www.algolia.com/doc/api-reference/widgets/search-box/js/
           container: '#persoo-searchbox',
           cssClasses: {
-          root: 'persoo-search-box-root',
-            form: [
-              'persoo-search-box-form',
-              'persoo-search-box-form--subclass'
-            ]
+            root: 'persoo-search-box-root',
+            form: 'persoo-search-box-form',
+            input: 'persoo-search-box-input',
+            reset: 'persoo-search-box-reset',
+            resetIcon: 'persoo-search-box-reset-icon',
+            loadingIndicator: 'persoo-search-box-loading-indicator',
+            loadingIcon: 'persoo-search-box-loading-icon',
+            submit: 'persoo-search-box-submit',
+            submitIcon: 'persoo-search-box-submit-icon'
           }
         }),
 
@@ -590,10 +623,8 @@
           ],
           cssClasses: {
             root: 'persoo-sort-by-root',
-            select: [
-              'persoo-sort-by-select',
-              'persoo-sort-by-select--subclass',
-            ],
+            select: 'persoo-sort-by-select',
+            option: 'persoo-sort-by-option'
           }
         }),
 
@@ -602,24 +633,26 @@
           container: '#persoo-stats',
           cssClasses: {
             root: 'persoo-stats-root',
-            text: [
-              'persoo-stats-text',
-              'persoo-stats-text--subclass'
-            ]
+            text: 'persoo-stats-text'
           }
         }),
 
-        // persooInstantSearch.widgets.toggleRefinement({
-        //   // Docs: https://www.algolia.com/doc/api-reference/widgets/toggle-refinement/js/
-        //   container: '#persoo-toggle-refinement',
-        //   attribute: 'gender',
-        //   cssClasses: {
-        //     root: 'persoo-toggle-refinment-root',
-        //     label: 'persoo-toggle-refinment-label',
-        //     checkbox: 'persoo-toggle-refinment-checkbox',
-        //     labelText: 'persoo-toggle-refinment-labelText'
-        //   }
-        // }),
+        persooInstantSearch.widgets.toggleRefinementCustom({
+          // Docs: https://www.algolia.com/doc/api-reference/widgets/toggle-refinement/js/
+          container: '#persoo-toggle-refinement',
+          attribute: 'inSale',
+          // on: true,
+          // off: false,
+          templates: {
+            labelText: 'Show in sale',
+          },
+          cssClasses: {
+            root: 'persoo-toggle-refinment-root',
+            label: 'persoo-toggle-refinment-label',
+            checkbox: 'persoo-toggle-refinment-checkbox',
+            labelText: 'persoo-toggle-refinment-label-text'
+          }
+        }),
 
         //
         // Custom Persoo widgets
@@ -632,13 +665,9 @@
             { label: '32 na stránku', value: 32 }
           ],
           cssClasses: {
-            root: 'persoo-custom-per-page-root',
-            toggler: 'persoo-custom-per-page-toggler',
-            select: [
-              'persoo-custom-per-page',
-              'persoo-custom-per-page--subclass'
-            ],
-            item: 'persoo-custom-per-page-option'
+            root: 'persoo-hits-per-page-custom-root',
+            select: 'persoo-hits-per-page-custom-select',
+            option: 'persoo-hits-per-page-custom-option'
           }
         }),
 
@@ -649,11 +678,10 @@
           limit: 5,
           showMore: true,
           cssClasses: {
-            root: 'persoo-menu-select',
-            list: [
-              'persoo-menu-select-list',
-              'persoo-menu-select-list--sub-class'
-            ]
+            root: 'persoo-menu-select-custom-root',
+            noRefinementRoot: 'persoo-menu-select-custom-no-refinement-root',
+            select: 'persoo-menu-select-custom-select',
+            option: 'persoo-menu-select-custom-option'
           },
           templates: {
             defaultOption: 'Zobrazit vše',
@@ -669,15 +697,12 @@
             { label: 'Nejdražší', value: 'products_price_desc' }
           ],
           cssClasses: {
-            root: 'persoo-sort-by-root',
-            select: [
-              'persoo-sort-by-select',
-              'persoo-sort-by-select--subclass',
-            ],
+            root: 'persoo-sort-by-custom-root',
+            select: 'persoo-sort-by-custom-select',
+            option: 'persoo-sort-by-custom-option'
           }
         })
       ])
-
 
       // Demo settings for Algolia prototype
       // const searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76')
