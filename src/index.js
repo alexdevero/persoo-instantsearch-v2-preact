@@ -39,13 +39,14 @@ import 'promise-polyfill/src/polyfill'
 // } from 'instantsearch.js/es/widgets'
 
 // Import Algolia connectors
-import { connectHitsPerPage, connectSortBy, connectMenu, connectPoweredBy } from 'instantsearch.js/es/connectors'
+import { connectHitsPerPage, connectSortBy, connectMenu, connectPoweredBy, connectToggleRefinement } from 'instantsearch.js/es/connectors'
 
 // Import custom widgets
 import { renderHitsPerPageCustom } from './widgets/hits-per-page-custom'
 import { renderSortByCustom } from './widgets/sort-by-custom'
 import { renderMenuSelectCustom } from './widgets/menu-select-custom'
 import { renderPoweredByCustom } from './widgets/powered-by-custom'
+import { renderToggleRefinementCustom } from './widgets/toggle-refinement-custom'
 
 // Import Algolia styles
 import './styles/algolia-reset.css'
@@ -150,6 +151,7 @@ const hitsPerPageCustom = connectHitsPerPage(renderHitsPerPageCustom)
 const sortByCustom = connectSortBy(renderSortByCustom)
 const menuSelectCustom = connectMenu(renderMenuSelectCustom)
 const poweredByCustom = connectPoweredBy(renderPoweredByCustom)
+const toggleRefinementCustom = connectToggleRefinement(renderToggleRefinementCustom)
 
 // Export everything
 if (typeof window !== 'undefined') {
@@ -161,6 +163,7 @@ if (typeof window !== 'undefined') {
   window.persooInstantSearch.widgets.sortByCustom = sortByCustom
   window.persooInstantSearch.widgets.menuSelectCustom = menuSelectCustom
   window.persooInstantSearch.widgets.poweredByCustom = poweredByCustom
+  window.persooInstantSearch.widgets.toggleRefinementCustom = toggleRefinementCustom
 
 
   window.algoliasearch = algoliasearch
